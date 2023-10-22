@@ -29,7 +29,7 @@ export function AuthProvider({ children }: Props) {
 
     const login = async (email: string, password: string) => {
         setAuthInfo({ ...authInfo, isPending: true });
-        const { user, error } = await signInUser(email, password);
+        const { user, error } = await signInUser({ email, password });
 
         if (error) {
             notify('error', error);
@@ -57,7 +57,7 @@ export function AuthProvider({ children }: Props) {
         if (!token) return;
 
         setAuthInfo({ ...authInfo, isPending: true });
-        const { user, error } = await getIsAuth();
+        const { user, error } = await getIsAuth(token);
         if (error) {
             notify('error', error);
             setAuthInfo({ ...authInfo, isPending: false, error });
