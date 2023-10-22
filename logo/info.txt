@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: Fondamento-Regular
+font link: https://fonts.google.com/specimen/Fondamento
+font author: Astigmatic
+font author site: http://www.astigmatic.com/
+Slogan Font: Fanwood Text.otf
+
+icon designer: arjuazka
+icon designer link: /arjuazka
+        
+{"bg":"#341952","icon":"#E96D77","font":"#FFFFFF","slogan":"#ffffff"}
+      
