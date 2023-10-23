@@ -1,32 +1,56 @@
 import Container from '../Container';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { BsFillSunFill } from 'react-icons/bs';
-import { useTheme } from '../../hooks';
+import { useAuth, useTheme } from '../../hooks';
 import SearchForm from '../form/SearchForm';
+
+interface AuthInfo {
+    isLoggedIn: boolean;
+}
 
 export default function Navbar() {
     const { toggleTheme } = useTheme();
+    const { authInfo, logout } = useAuth();
+    const { isLoggedIn } = authInfo as AuthInfo;
+    const navigate = useNavigate();
+
+    const handleSubmit = (value: string) => {
+        navigate('/movie/search?title=' + value);
+    };
+
     return (
-        <div>
-            <Container>
-                <div>
+        <div className='bg-pri text-white'>
+            <Container className='p-2'>
+                <div className='flex justify-between items-center'>
                     <Link to='/'>
                         <img
-                            src='./vector/default.svg'
+                            src='/vector/default.svg'
                             alt='logo'
                             className='h-10 w-10'
                         />
                     </Link>
-                    <ul>
+                    <ul className='flex justify-center items-center space-x-5'>
                         <li>
-                            <button onClick={toggleTheme}>
+                            <button
+                                onClick={toggleTheme}
+                                className='dark:text-white text-light-gray text-lg '
+                            >
                                 <BsFillSunFill />
                             </button>
                         </li>
                         <li>
-                            <SearchForm />
+                            <SearchForm
+                                placeholder='Search'
+                                onSubmit={handleSubmit}
+                            />
                         </li>
-                        <li>login and logout</li>
+                        <li>
+                            {isLoggedIn ? (
+                                <button onClick={logout}>Log out</button>
+                            ) : (
+                                <Link to='/auth/sign-in'>Log in</Link>
+                            )}
+                        </li>
                     </ul>
                 </div>
             </Container>

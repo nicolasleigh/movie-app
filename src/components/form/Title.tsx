@@ -1,3 +1,3 @@
-export default function Title() {
-    return <div>Title</div>;
+export default function Title({ children }) {
+    return <div>{children}</div>;
 }

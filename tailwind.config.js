@@ -12,5 +12,5 @@ export default {
         },
     },
     plugins: [],
-    darkMode: ['class', '[data-mode="dk"]'],
+    darkMode: 'class',
 };

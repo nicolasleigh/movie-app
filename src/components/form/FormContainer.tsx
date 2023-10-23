@@ -1,3 +1,3 @@
-export default function FormContainer() {
-    return <div>FormContainer</div>;
+export default function FormContainer({ children }) {
+    return <div>{children}</div>;
 }
