@@ -19,7 +19,7 @@ export default function Navbar() {
     };
 
     return (
-        <div className='bg-pri text-white'>
+        <div className='bg-green-500 text-white'>
             <Container className='p-2'>
                 <div className='flex justify-between items-center'>
                     <Link to='/'>

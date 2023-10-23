@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import Navbar from './components/user/Navbar';
-import Home from './components/Home';
+import Home from './components/user/Home';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 import ForgetPass from './components/auth/ForgetPass';
@@ -11,7 +10,6 @@ import ResetPass from './components/auth/ResetPass';
 function App() {
     return (
         <div>
-            <Navbar />
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/auth/sign-in' element={<SignIn />} />

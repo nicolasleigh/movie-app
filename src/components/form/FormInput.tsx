@@ -1,26 +1,28 @@
-import { useForm } from 'react-hook-form';
-
 interface Props {
     name: string;
     placeholder: string;
     label: string;
+    [x: string]: any;
 }
 
-export default function FormInput({ name, placeholder, label }: Props) {
-    const {
-        register,
-        setValue,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
-
+export default function FormInput({
+    name,
+    placeholder,
+    label,
+    ...rest
+}: Props) {
     return (
-        <>
-            <label htmlFor={name}>{label}</label>
+        <div className='flex flex-col'>
+            <label htmlFor={name} className='font-semibold'>
+                {label}
+            </label>
             <input
-                {...register(name, { required: true })}
                 placeholder={placeholder}
+                id={name}
+                name={name}
+                {...rest}
+                className='rounded bg-transparent border-2 text-lg outline-none focus:border-dark-gray transition p-1'
             />
-        </>
+        </div>
     );
 }

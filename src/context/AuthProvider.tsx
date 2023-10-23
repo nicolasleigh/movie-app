@@ -5,7 +5,12 @@ import { getIsAuth, signInUser } from '../api/auth';
 interface Auth {
     login: (email: string, password: string) => void;
     logout: () => void;
-    authInfo: object;
+    authInfo: {
+        profile: any;
+        isLoggedIn: boolean;
+        isPending: boolean;
+        error: string;
+    };
     isAuth: () => void;
 }
 

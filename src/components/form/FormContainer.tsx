@@ -1,3 +1,7 @@
 export default function FormContainer({ children }) {
-    return <div>{children}</div>;
+    return (
+        <div className='bg-blue-500 flex justify-center items-center fixed inset-0 '>
+            {children}
+        </div>
+    );
 }

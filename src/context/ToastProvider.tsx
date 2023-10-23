@@ -1,6 +1,5 @@
 import { ReactNode, createContext } from 'react';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 interface Toast {
     notify: (type: string, message: string) => void;
@@ -10,12 +9,10 @@ interface Props {
 }
 
 const options = {
-    autoClose: 6000,
-    type: toast.TYPE.INFO,
+    autoClose: 5000,
     hideProgressBar: false,
     position: toast.POSITION.TOP_CENTER,
     pauseOnHover: true,
-    progress: 0.2,
 };
 
 export const ToastContext = createContext<Toast>(null!);
@@ -39,6 +36,7 @@ export function ToastProvider({ children }: Props) {
     };
     return (
         <ToastContext.Provider value={{ notify }}>
+            <ToastContainer />
             {children}
         </ToastContext.Provider>
     );
