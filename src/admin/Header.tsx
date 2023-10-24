@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../hooks';
 import { HeaderDropDown } from '../components/HeaderDropDown';
 
-export default function Header({ AddMovie, AddActor }) {
+export default function Header({ addMovie, addActor }) {
     const navigate = useNavigate();
     const { toggleTheme } = useTheme();
 
@@ -18,7 +18,7 @@ export default function Header({ AddMovie, AddActor }) {
                 <button onClick={toggleTheme}>
                     <BsFillSunFill size={26} />
                 </button>
-                <HeaderDropDown addMovie={AddMovie} addActor={AddActor} />
+                <HeaderDropDown addMovie={addMovie} addActor={addActor} />
             </div>
         </div>
     );

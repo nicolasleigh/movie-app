@@ -1,3 +1,5 @@
+import { AxiosError } from 'axios';
+
 export const isValidEmail = (email: string) => {
     const validEmail = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
     return validEmail.test(email);
@@ -15,4 +17,11 @@ export const validateUserInfo = ({ email, password }: any) => {
             } characters!`,
         };
     return { ok: true, error: '' };
+};
+
+export const getToken = () => localStorage.getItem('auth-token');
+
+export const catchErr = (error: AxiosError) => {
+    const message = error.response?.data || error.message;
+    return { error: message };
 };
