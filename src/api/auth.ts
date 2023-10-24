@@ -37,6 +37,21 @@ export const verifyEmail = async (userInfo: object) => {
     }
 };
 
+export const verifyPassRestToken = async (token: string, userId: string) => {
+    try {
+        const { data } = await client.post('/user/verify-reset-pass-token', {
+            token,
+            userId,
+        });
+        return data;
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            const message = error.response?.data || error.message;
+            return { error: message };
+        }
+    }
+};
+
 export const resendEmailVerificationToken = async (userId: string) => {
     try {
         const { data } = await client.post('/user/resend-email-token', userId);

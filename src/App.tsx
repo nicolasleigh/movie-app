@@ -6,11 +6,13 @@ import SignUp from './components/auth/SignUp';
 import ForgetPass from './components/auth/ForgetPass';
 import VerifyEmail from './components/auth/VerifyEmail';
 import ResetPass from './components/auth/ResetPass';
+import AdminNav from './admin/AdminNav';
 
 function App() {
     return (
         <div>
             <Routes>
+                <Route path='/admin' element={<AdminNav />} />
                 <Route path='/' element={<Home />} />
                 <Route path='/auth/sign-in' element={<SignIn />} />
                 <Route path='/auth/sign-up' element={<SignUp />} />
