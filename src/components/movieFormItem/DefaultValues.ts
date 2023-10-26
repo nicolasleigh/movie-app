@@ -6,7 +6,7 @@ export const defaultValues = {
     language: 'english',
     public: true,
     director: '',
-    actors: [''],
+    actors: [],
     releaseYear: dayjs(),
     genres: [],
     type: 'tv',

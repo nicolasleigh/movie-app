@@ -8,9 +8,10 @@ import MovieFormItem from '../movieFormItem';
 export const MovieForm = () => {
     const [componentDisabled, setComponentDisabled] = useState(true);
 
-    const { control, handleSubmit, reset,setValue,register } = useForm({
-        defaultValues,
-    });
+    const { control, handleSubmit, reset, setValue, register, getValues } =
+        useForm({
+            defaultValues,
+        });
     const onSubmit: SubmitHandler<any> = (data) => {
         console.log(data);
     };
@@ -31,6 +32,7 @@ export const MovieForm = () => {
                 onSubmit={onSubmit}
                 setValue={setValue}
                 register={register}
+                getValues={getValues}
             />
         </>
     );
