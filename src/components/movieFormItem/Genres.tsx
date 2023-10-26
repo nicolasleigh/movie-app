@@ -1,8 +1,21 @@
 import { Form, Select } from 'antd';
-import { Controller } from 'react-hook-form';
-export default function Genres({ control, name }: any) {
+import { Controller, useController } from 'react-hook-form';
+export default function Genres({ control, name, validateRules }: any) {
+    const {
+        fieldState: { invalid, isTouched, isDirty },
+    } = useController({
+        name,
+        control,
+        rules: validateRules,
+    });
     return (
-        <Form.Item label='Genres' name={name}>
+        <Form.Item
+            label='Genres'
+            name={name}
+            hasFeedback={true}
+            validateStatus={invalid ? 'error' : undefined}
+            required
+        >
             <Controller
                 name={name}
                 control={control}

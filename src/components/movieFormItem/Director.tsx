@@ -1,6 +1,6 @@
 import { Form, Input } from 'antd';
-import { Controller } from 'react-hook-form';
-export default function Director({ control, name }: any) {
+import { Controller, useController } from 'react-hook-form';
+export default function Director({ control, name, validateRules }: any) {
     return (
         <Form.Item label='Director' name={name}>
             <Controller

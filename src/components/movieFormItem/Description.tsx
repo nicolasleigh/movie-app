@@ -1,9 +1,14 @@
 import { Form } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
-import { Controller } from 'react-hook-form';
-export default function Description({ control, name }: any) {
+import { Controller, useController } from 'react-hook-form';
+export default function Description({ control, name, validateRules }: any) {
+
     return (
-        <Form.Item label='Description' name={name}>
+        <Form.Item
+            label='Description'
+            name={name}
+
+        >
             <Controller
                 name={name}
                 control={control}

@@ -14,6 +14,10 @@ import ReleaseYear from '../movieFormItem/ReleaseYear';
 import { defaultValues } from './DefaultValues';
 import { Tags } from './Tags';
 
+const defaultRules = {
+    required: true,
+};
+
 export default function MovieFormItem({
     control,
     componentDisabled,
@@ -35,18 +39,63 @@ export default function MovieFormItem({
             form={form}
             name='movie-form'
         >
-            <Title control={control} name='title' />
-            <Description control={control} name='description' />
-            <Tags control={control} name='tags' />
-            <Director control={control} name='director' />
-            <Actors setValue={setValue} getValues={getValues} name='actors' />
-            <ReleaseYear control={control} name='releaseYear' />
-            <Public control={control} setValue={setValue} name='public' />
-            <Language control={control} name='language' />
-            <Type control={control} name='type' />
-            <Genres control={control} name='genres' />
-            <UploadImage setValue={setValue} name='poster' />
-            <UploadVideo setValue={setValue} name='video' />
+            <Title
+                control={control}
+                name='title'
+                validateRules={defaultRules}
+            />
+            <Description
+                control={control}
+                name='description'
+                validateRules={defaultRules}
+            />
+            <Tags control={control} name='tags' validateRules={defaultRules} />
+            <Director
+                control={control}
+                name='director'
+                validateRules={defaultRules}
+            />
+            <Actors
+            control={control}
+                setValue={setValue}
+                getValues={getValues}
+                name='actors'
+                validateRules={defaultRules}
+            />
+            <ReleaseYear
+                control={control}
+                name='releaseYear'
+                validateRules={defaultRules}
+            />
+            <Public
+                control={control}
+                setValue={setValue}
+                name='public'
+                validateRules={defaultRules}
+            />
+            <Language
+                control={control}
+                name='language'
+                validateRules={defaultRules}
+            />
+            <Type control={control} name='type' validateRules={defaultRules} />
+            <Genres
+                control={control}
+                name='genres'
+                validateRules={defaultRules}
+            />
+            <UploadImage
+            control={control}
+                setValue={setValue}
+                name='poster'
+                validateRules={defaultRules}
+            />
+            <UploadVideo
+            control={control}
+                setValue={setValue}
+                name='video'
+                validateRules={defaultRules}
+            />
             <SubmitAndReset
                 handleSubmit={handleSubmit}
                 reset={reset}

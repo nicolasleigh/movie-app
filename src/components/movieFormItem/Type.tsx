@@ -1,8 +1,21 @@
 import { Form, Radio } from 'antd';
-import { Controller } from 'react-hook-form';
-export default function Type({ control, name }: any) {
+import { Controller, useController } from 'react-hook-form';
+export default function Type({ control, name, validateRules }: any) {
+    const {
+        fieldState: { invalid, isTouched, isDirty },
+    } = useController({
+        name,
+        control,
+        rules: validateRules,
+    });
     return (
-        <Form.Item label='Type' name={name}>
+        <Form.Item
+            label='Type'
+            name={name}
+            hasFeedback={true}
+            validateStatus={invalid ? 'error' : undefined}
+            required
+        >
             <Controller
                 name={name}
                 control={control}

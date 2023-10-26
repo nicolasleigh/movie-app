@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
 import { Form, Upload } from 'antd';
-import { Controller } from 'react-hook-form';
+import { Controller, useController } from 'react-hook-form';
 import { useReset } from '../../hooks';
 
 const normFile = (e: any) => {

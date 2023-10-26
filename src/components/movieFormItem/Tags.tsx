@@ -1,6 +1,6 @@
 import { Select, Form } from 'antd';
 import type { SelectProps } from 'antd';
-import { Controller } from 'react-hook-form';
+import { Controller, useController } from 'react-hook-form';
 const options: SelectProps['options'] = [];
 
 for (let i = 10; i < 36; i++) {
@@ -10,7 +10,7 @@ for (let i = 10; i < 36; i++) {
     });
 }
 
-export const Tags = ({ control, name }: any) => {
+export const Tags = ({ control, name, validateRules }: any) => {
     return (
         <Form.Item label='Tags' name={name}>
             <Controller

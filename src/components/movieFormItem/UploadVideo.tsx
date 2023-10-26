@@ -9,7 +9,11 @@ const normFile = (e: any) => {
     }
     return e?.fileList;
 };
-export default function UploadVideo({ setValue, name }: any) {
+export default function UploadVideo({
+    setValue,
+    name,
+ 
+}: any) {
     const form = Form.useFormInstance();
 
     const handleChange = ({ file, fileList }: any) => {
@@ -23,12 +27,15 @@ export default function UploadVideo({ setValue, name }: any) {
         return () => setClickedReset(false);
     }, [clickedReset]);
 
+
+
     return (
         <Form.Item
             label='Upload video'
             valuePropName='fileList'
             getValueFromEvent={normFile}
             name={name}
+
         >
             <Upload
                 action={import.meta.env.VITE_UPLOAD_VIDEO_PATH}
