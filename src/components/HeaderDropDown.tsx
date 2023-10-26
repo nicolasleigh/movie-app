@@ -29,7 +29,7 @@ export const HeaderDropDown = ({ addMovie, addActor }) => {
 
     return (
         <Space wrap>
-            <Dropdown menu={menuProps}>
+            <Dropdown menu={menuProps} trigger={['click']}>
                 <Button>
                     <Space>
                         Create

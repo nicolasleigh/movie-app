@@ -5,6 +5,7 @@ export default function SubmitAndReset({
     reset,
     onSubmit,
     defaultValues,
+    onClose,
 }: any) {
     const { setClickedReset } = useReset();
 
@@ -27,6 +28,7 @@ export default function SubmitAndReset({
                 <Button htmlType='reset' onClick={handleResetClick}>
                     Reset
                 </Button>
+                <Button onClick={onClose}>Close</Button>
             </Space>
         </Form.Item>
     );

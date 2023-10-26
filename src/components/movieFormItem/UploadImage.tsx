@@ -35,7 +35,7 @@ export default function UploadImage({ setValue, name }: any) {
             <Upload
                 action={import.meta.env.VITE_UPLOAD_IMAGE_PATH}
                 listType='picture-card'
-                accept='image/*'
+                accept='image/jpg, image/jpeg, image/png'
                 maxCount={1}
                 onChange={handleChange}
             >

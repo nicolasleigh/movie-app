@@ -26,16 +26,19 @@ export default function MovieFormItem({
     onSubmit,
     setValue,
     getValues,
+    onClose
 }: any) {
     const [form] = Form.useForm();
 
     return (
         <Form
-            labelCol={{ span: 4 }}
-            wrapperCol={{ span: 14 }}
+            labelCol={{ span: 6 }}
+            wrapperCol={{ span: 16 }}
+            labelAlign='left'
             layout='horizontal'
+            size='small'
             disabled={componentDisabled}
-            style={{ maxWidth: 600 }}
+            style={{}}
             form={form}
             name='movie-form'
         >
@@ -56,7 +59,7 @@ export default function MovieFormItem({
                 validateRules={defaultRules}
             />
             <Actors
-            control={control}
+                control={control}
                 setValue={setValue}
                 getValues={getValues}
                 name='actors'
@@ -85,13 +88,13 @@ export default function MovieFormItem({
                 validateRules={defaultRules}
             />
             <UploadImage
-            control={control}
+                control={control}
                 setValue={setValue}
                 name='poster'
                 validateRules={defaultRules}
             />
             <UploadVideo
-            control={control}
+                control={control}
                 setValue={setValue}
                 name='video'
                 validateRules={defaultRules}
@@ -101,6 +104,7 @@ export default function MovieFormItem({
                 reset={reset}
                 onSubmit={onSubmit}
                 defaultValues={defaultValues}
+                onClose={onClose}
             />
         </Form>
     );

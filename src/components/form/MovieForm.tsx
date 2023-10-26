@@ -5,8 +5,8 @@ import { Checkbox } from 'antd';
 
 import MovieFormItem from '../movieFormItem';
 
-export const MovieForm = () => {
-    const [componentDisabled, setComponentDisabled] = useState(true);
+export const MovieForm = ({onClose}) => {
+    const [componentDisabled, setComponentDisabled] = useState(false);
 
     const { control, handleSubmit, reset, setValue, register, getValues } =
         useForm({
@@ -33,6 +33,7 @@ export const MovieForm = () => {
                 setValue={setValue}
                 register={register}
                 getValues={getValues}
+                onClose={onClose}
             />
         </>
     );

@@ -27,13 +27,8 @@ export default function MovieUpload({ visible, onClose }) {
         handleUploadVideo(formData);
     };
     return (
-        <ModalContainer>
-            <MovieSelector
-                visible={true}
-                handleChange={handleChange}
-                onTypeError={handleTypeError}
-            />
-            <MovieForm />
+        <ModalContainer visible={visible} onClose={onClose}>
+            <MovieForm onClose={onClose} />
         </ModalContainer>
     );
 }
