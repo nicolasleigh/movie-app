@@ -9,17 +9,17 @@ const normFile = (e: any) => {
     }
     return e?.fileList;
 };
-export default function UploadVideo({ setValue }: any) {
+export default function UploadVideo({ setValue, name }: any) {
     const form = Form.useFormInstance();
 
     const handleChange = ({ file, fileList }: any) => {
-        if (file.status === 'done') setValue('video', file);
+        if (file.status === 'done') setValue(name, file);
     };
 
     const { clickedReset, setClickedReset } = useReset();
 
     useEffect(() => {
-        if (clickedReset) form.resetFields(['upload-video']);
+        if (clickedReset) form.resetFields([name]);
         return () => setClickedReset(false);
     }, [clickedReset]);
 
@@ -28,7 +28,7 @@ export default function UploadVideo({ setValue }: any) {
             label='Upload video'
             valuePropName='fileList'
             getValueFromEvent={normFile}
-            name='upload-video'
+            name={name}
         >
             <Upload
                 action={import.meta.env.VITE_UPLOAD_VIDEO_PATH}

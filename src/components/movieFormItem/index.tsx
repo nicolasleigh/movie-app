@@ -24,6 +24,7 @@ export default function MovieFormItem({
     getValues,
 }: any) {
     const [form] = Form.useForm();
+
     return (
         <Form
             labelCol={{ span: 4 }}
@@ -34,18 +35,18 @@ export default function MovieFormItem({
             form={form}
             name='movie-form'
         >
-            <Title control={control} />
-            <Description control={control} />
-            <Tags control={control} setValue={setValue} getValues={getValues} />
-            <Director control={control} />
-            <Actors setValue={setValue} getValues={getValues} />
-            <ReleaseYear control={control} />
-            <Public control={control} setValue={setValue} />
-            <Language control={control} />
-            <Type control={control} />
-            <Genres control={control} />
-            <UploadImage setValue={setValue} />
-            <UploadVideo setValue={setValue} />
+            <Title control={control} name='title' />
+            <Description control={control} name='description' />
+            <Tags control={control} name='tags' />
+            <Director control={control} name='director' />
+            <Actors setValue={setValue} getValues={getValues} name='actors' />
+            <ReleaseYear control={control} name='releaseYear' />
+            <Public control={control} setValue={setValue} name='public' />
+            <Language control={control} name='language' />
+            <Type control={control} name='type' />
+            <Genres control={control} name='genres' />
+            <UploadImage setValue={setValue} name='poster' />
+            <UploadVideo setValue={setValue} name='video' />
             <SubmitAndReset
                 handleSubmit={handleSubmit}
                 reset={reset}

@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Form, Space, Button } from 'antd';
 import { useReset } from '../../hooks';
 export default function SubmitAndReset({
@@ -7,16 +6,12 @@ export default function SubmitAndReset({
     onSubmit,
     defaultValues,
 }: any) {
-    const { clickedReset, setClickedReset } = useReset();
+    const { setClickedReset } = useReset();
 
     const handleResetClick = () => {
         reset(defaultValues);
         setClickedReset(true);
     };
-
-    // useEffect(() => {
-    //     console.log(clickedReset);
-    // }, [clickedReset]);
 
     return (
         <Form.Item label=' ' colon={false}>

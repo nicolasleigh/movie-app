@@ -11,17 +11,17 @@ const normFile = (e: any) => {
     return e?.fileList;
 };
 
-export default function UploadImage({ setValue }: any) {
+export default function UploadImage({ setValue, name }: any) {
     const form = Form.useFormInstance();
 
     const handleChange = ({ file, fileList }: any) => {
-        if (file.status === 'done') setValue(file);
+        if (file.status === 'done') setValue(name, file);
     };
 
     const { clickedReset, setClickedReset } = useReset();
 
     useEffect(() => {
-        if (clickedReset) form.resetFields(['upload-image']);
+        if (clickedReset) form.resetFields([name]);
         return () => setClickedReset(false);
     }, [clickedReset]);
 
@@ -30,7 +30,7 @@ export default function UploadImage({ setValue }: any) {
             label='Upload image'
             valuePropName='fileList'
             getValueFromEvent={normFile}
-            name='upload-image'
+            name={name}
         >
             <Upload
                 action={import.meta.env.VITE_UPLOAD_IMAGE_PATH}

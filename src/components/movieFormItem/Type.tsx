@@ -1,10 +1,10 @@
 import { Form, Radio } from 'antd';
 import { Controller } from 'react-hook-form';
-export default function Type({ control }: any) {
+export default function Type({ control, name }: any) {
     return (
-        <Form.Item label='Type'>
+        <Form.Item label='Type' name={name}>
             <Controller
-                name='type'
+                name={name}
                 control={control}
                 render={({ field }) => (
                     <Radio.Group {...field}>

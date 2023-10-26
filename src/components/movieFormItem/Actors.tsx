@@ -40,11 +40,11 @@ const fetch = (value: string, callback: Function) => {
     }
 };
 
-export default function Actors({ setValue, getValues }: any) {
+export default function Actors({ setValue, getValues, name }: any) {
     const [data, setData] = useState<SelectProps['options']>([]);
     const [stateValue, setStateValue] = useState<string>([]);
 
-    const formHookValue = getValues('actors');
+    const formHookValue = getValues(name);
 
     const handleSearch = (newValue: string) => {
         fetch(newValue, setData);
@@ -56,26 +56,16 @@ export default function Actors({ setValue, getValues }: any) {
         return () => setClickedReset(false);
     }, [clickedReset]);
 
-    // const handleChange = (newValue: string) => {
-    //     setStateValue(newValue);
-    // };
-
     useEffect(() => {
-        setValue('actors', stateValue);
+        setValue(name, stateValue);
     }, [stateValue]);
-
-    // useEffect(() => {
-    //     setStateValue(getValues('actors'));
-    // }, [stateValue]);
-
-    // console.log(getValues('actors'));
 
     const handleChange = (newValue: string) => {
         setStateValue(newValue);
     };
 
     return (
-        <Form.Item label='Actors'>
+        <Form.Item label='Actors' name={name}>
             <Select
                 showSearch
                 value={stateValue}

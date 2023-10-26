@@ -1,10 +1,10 @@
 import { Form, Select } from 'antd';
 import { Controller } from 'react-hook-form';
-export default function Genres({ control }: any) {
+export default function Genres({ control, name }: any) {
     return (
-        <Form.Item label='Genres'>
+        <Form.Item label='Genres' name={name}>
             <Controller
-                name='genres'
+                name={name}
                 control={control}
                 render={({ field }) => (
                     <Select
