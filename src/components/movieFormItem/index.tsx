@@ -13,6 +13,7 @@ import Public from '../movieFormItem/Public';
 import ReleaseYear from '../movieFormItem/ReleaseYear';
 import { defaultValues } from './DefaultValues';
 import { Tags } from './Tags';
+import { useReset } from '../../hooks';
 
 const defaultRules = {
     required: true,
@@ -26,9 +27,11 @@ export default function MovieFormItem({
     onSubmit,
     setValue,
     getValues,
-    onClose
+    onClose,
 }: any) {
     const [form] = Form.useForm();
+    // const { clickedReset } = useReset();
+    // if (clickedReset) form.resetFields();
 
     return (
         <Form
@@ -47,24 +50,14 @@ export default function MovieFormItem({
                 name='title'
                 validateRules={defaultRules}
             />
-            <Description
-                control={control}
-                name='description'
-                validateRules={defaultRules}
-            />
-            <Tags control={control} name='tags' validateRules={defaultRules} />
+            <Description control={control} name='description' />
+            <Tags control={control} name='tags' />
             <Director
                 control={control}
                 name='director'
                 validateRules={defaultRules}
             />
-            <Actors
-                control={control}
-                setValue={setValue}
-                getValues={getValues}
-                name='actors'
-                validateRules={defaultRules}
-            />
+            <Actors setValue={setValue} getValues={getValues} name='actors' />
             <ReleaseYear
                 control={control}
                 name='releaseYear'
@@ -87,18 +80,8 @@ export default function MovieFormItem({
                 name='genres'
                 validateRules={defaultRules}
             />
-            <UploadImage
-                control={control}
-                setValue={setValue}
-                name='poster'
-                validateRules={defaultRules}
-            />
-            <UploadVideo
-                control={control}
-                setValue={setValue}
-                name='video'
-                validateRules={defaultRules}
-            />
+            <UploadImage setValue={setValue} name='poster' />
+            <UploadVideo setValue={setValue} name='video' />
             <SubmitAndReset
                 handleSubmit={handleSubmit}
                 reset={reset}

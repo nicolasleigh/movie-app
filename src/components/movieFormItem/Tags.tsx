@@ -10,7 +10,7 @@ for (let i = 10; i < 36; i++) {
     });
 }
 
-export const Tags = ({ control, name, validateRules }: any) => {
+export const Tags = ({ control, name }: any) => {
     return (
         <Form.Item label='Tags' name={name}>
             <Controller

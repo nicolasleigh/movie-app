@@ -4,16 +4,24 @@ import { defaultValues } from '../movieFormItem/DefaultValues';
 import { Checkbox } from 'antd';
 
 import MovieFormItem from '../movieFormItem';
+import { client } from '../../api/client';
 
-export const MovieForm = ({onClose}) => {
+export const MovieForm = ({ onClose }) => {
     const [componentDisabled, setComponentDisabled] = useState(false);
 
     const { control, handleSubmit, reset, setValue, register, getValues } =
         useForm({
             defaultValues,
         });
-    const onSubmit: SubmitHandler<any> = (data) => {
-        console.log(data);
+    const onSubmit: SubmitHandler<any> = async (data) => {
+        const strData = JSON.stringify(data);
+        console.log('onSubmit data', data);
+        const response = await client.post('/movie/create-movie', strData, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        console.log('onSubmit res', response);
     };
 
     return (
