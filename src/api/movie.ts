@@ -47,3 +47,12 @@ export const uploadMovieInfo = async (formData) => {
         if (axios.isAxiosError(error)) catchErr(error);
     }
 };
+
+export const getLatestMovie = async () => {
+    try {
+        const { data } = await client.get('/movie/latest-movies');
+        return data;
+    } catch (error) {
+        if (axios.isAxiosError(error)) catchErr(error);
+    }
+};

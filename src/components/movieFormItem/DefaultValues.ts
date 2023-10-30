@@ -10,7 +10,7 @@ export const defaultValues = {
     releaseYear: dayjs(),
     genres: [],
     type: 'tv',
-    poster: '',
+    poster: [],
     video: '',
     tags: [],
 };

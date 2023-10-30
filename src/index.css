@@ -42,3 +42,22 @@
 /* .ant-upload-list-item-actions {
     display: none;
 } */
+
+/* Slide show */
+.ant-carousel .slick-prev,
+.ant-carousel .slick-next {
+    color: unset;
+    font-size: unset;
+}
+
+.ant-carousel .slick-prev:hover,
+.ant-carousel .slick-next:hover,
+.ant-carousel .slick-prev:focus,
+.ant-carousel .slick-next:focus {
+    color: unset;
+}
+
+body .slick-prev::before,
+body .slick-next::before {
+    display: none;
+}
