@@ -75,3 +75,8 @@ body .slick-next::before {
 .select__menu {
     color: rgb(55 65 81);
 }
+
+/* https://stackoverflow.com/questions/68137362/using-tailwind-forms-plugin-with-react-select */
+.select__input {
+    @apply focus:ring-0;
+}
