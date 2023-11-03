@@ -80,3 +80,11 @@ body .slick-next::before {
 .select__input {
     @apply focus:ring-0;
 }
+
+.select-error div {
+    border-color: #e74c3c;
+}
+
+.select-error:hover div {
+    border-color: #e74c3c;
+}

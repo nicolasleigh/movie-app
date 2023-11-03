@@ -4,14 +4,20 @@ import { useForm, SubmitHandler, useController } from 'react-hook-form';
 import dayjs from 'dayjs';
 import Toast from '../components/Toast';
 import ActorSearch from '../components/ActorSearch';
+import GenreSelect from '../components/GenreSelect';
+import LanguageSelect from '../components/LanguageSelect';
+import TypeSelect from '../components/TypeSelect';
+import FormError from '../components/FormError';
+
+// const formStyle = 'flex items-center justify-between';
+const labelStyle = 'block text-gray-700 text-sm font-bold mb-2';
+// const inputStyle =
+//     'shadow appearance-none  border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none border-[#E5E7EB]';
+const inputStyle =
+    'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500';
+const formItemStyle = 'mb-4';
 
 export default function CreateMovie() {
-    // const formStyle = 'flex items-center justify-between';
-    const labelStyle = 'block text-gray-700 text-sm font-bold mb-2';
-    const inputStyle =
-        'shadow appearance-none  border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none';
-    const formItemStyle = 'mb-4';
-
     const {
         register,
         handleSubmit,
@@ -29,12 +35,11 @@ export default function CreateMovie() {
         },
     });
 
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = (data) => console.log(data); //TODO
 
     return (
         <div className='flex'>
             <SideNav />
-
             <div className='bg-stone-900 w-4/5 text-white pt-6 '>
                 <div className='w-full max-w-md mx-auto'>
                     <form
@@ -53,18 +58,10 @@ export default function CreateMovie() {
                                 id='title'
                                 className={inputStyle}
                             />
-                            {errors.title && (
-                                <p className='mt-2 text-sm text-red-600 dark:text-red-500'>
-                                    <span className='font-medium'>Oops!</span>{' '}
-                                    Please enter title!
-                                </p>
-                            )}
-                            {/* {errors.title && (
-                                <Toast
-                                    type='error'
-                                    message={errors.title.message}
-                                />
-                            )} */}
+                            <FormError
+                                errors={errors.title}
+                                message='Please enter title!'
+                            />
                         </div>
 
                         <div className={formItemStyle}>
@@ -72,105 +69,56 @@ export default function CreateMovie() {
                                 Actor
                             </label>
                             <ActorSearch name='actor' control={control} />
-                            {/* <input
-                                {...register('actor')}
-                                id='actor'
-                                type='text'
-                                className={inputStyle}
-                            /> */}
+                            <FormError
+                                errors={errors.actor}
+                                message='Please select actors!'
+                            />
                         </div>
                         <div className={formItemStyle}>
                             <label htmlFor='genre' className={labelStyle}>
                                 Genre
                             </label>
                             {/* <Select options={genreOpt} /> */}
-                            <select
-                                {...register('genre', {
-                                    required: true,
-                                })}
-                                id='genre'
-                                defaultValue={'DEFAULT'}
-                                className={inputStyle}
-                            >
-                                <option value='DEFAULT' disabled>
-                                    Choose genre
-                                </option>
-                                <option value='adventure'>Adventure</option>
-                                <option value='animation'>Animation</option>
-                                <option value='comedy'>Comedy</option>
-                                <option value='crime'>Crime</option>
-                                <option value='fiction'>Fiction</option>
-                                <option value='sci-fi'>Sci-Fi</option>
-                                <option value='thriller'>Thriller</option>
-                                <option value='horror'>Horror</option>
-                                <option value='other'>Other</option>
-                            </select>
-                            {errors.genre && (
-                                <p className='mt-2 text-sm text-red-600 dark:text-red-500'>
-                                    <span className='font-medium'>Oops!</span>{' '}
-                                    Please choose genre!
-                                </p>
-                            )}
+                            <GenreSelect name='genre' control={control} />
+                            <FormError
+                                errors={errors.genre}
+                                message='Please choose genre!'
+                            />
                         </div>
                         <div className={formItemStyle}>
                             <label htmlFor='language' className={labelStyle}>
                                 Language
                             </label>
-                            <select
-                                {...register('language', {
-                                    required: 'Language is required!',
-                                })}
-                                id='language'
-                                defaultValue={'DEFAULT'}
-                                className={inputStyle}
-                            >
-                                <option value='DEFAULT' disabled>
-                                    Choose language
-                                </option>
-                                <option value='chinese'>Chinese</option>
-                                <option value='english'>English</option>
-                                <option value='french'>French</option>
-                                <option value='other'>Other</option>
-                            </select>
-                            {errors.language && (
-                                <p className='mt-2 text-sm text-red-600 dark:text-red-500'>
-                                    <span className='font-medium'>Oops!</span>{' '}
-                                    Please choose language!
-                                </p>
-                            )}
+                            <LanguageSelect name='language' control={control} />
+                            <FormError
+                                errors={errors.language}
+                                message='Please choose language!'
+                            />
                         </div>
 
                         <div className={formItemStyle}>
                             <label htmlFor='type' className={labelStyle}>
                                 Type
                             </label>
-                            <select
-                                {...register('type', {
-                                    required: true,
-                                })}
-                                id='type'
-                                defaultValue={'DEFAULT'}
-                                className={inputStyle}
-                            >
-                                <option value='DEFAULT' disabled>
-                                    Choose type
-                                </option>
-                                <option value='tv'>TV Series</option>
-                                <option value='movie'>Movie</option>
-                                <option value='other'>Other</option>
-                            </select>
-                            {errors.type && (
-                                <p className='mt-2 text-sm text-red-600 dark:text-red-500'>
-                                    <span className='font-medium'>Oops!</span>{' '}
-                                    Please choose type!
-                                </p>
-                            )}
+                            <TypeSelect name='type' control={control} />
+                            <FormError
+                                errors={errors.type}
+                                message='Please choose type!'
+                            />
                         </div>
                         <div className={formItemStyle}>
                             <label htmlFor='releaseYear' className={labelStyle}>
                                 Release Year
                             </label>
-                            <DatePick control={control} name='releaseYear' />
+                            <DatePick
+                                control={control}
+                                name='releaseYear'
+                                className={inputStyle}
+                            />
+                            <FormError
+                                errors={errors.releaseYear}
+                                message='Please choose release year!'
+                            />
                         </div>
                         <div className={formItemStyle}>
                             <label htmlFor='desc' className={labelStyle}>

@@ -21,6 +21,7 @@ export default function ActorSearch({ name, control }: any) {
         <Controller
             name={name}
             control={control}
+            rules={{ required: true }}
             render={({ field }) => (
                 <AsyncSelect
                     {...field}

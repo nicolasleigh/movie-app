@@ -12,7 +12,7 @@ import { Controller, UseControllerProps, useController } from 'react-hook-form';
 //     return <span title={tooltipText}>{year}</span>;
 // };
 
-export const DatePick = ({ control, name }) => {
+export const DatePick = ({ control, name, className }) => {
     const [startDate, setStartDate] = useState(new Date());
 
     // const { field } = useController(props);
@@ -24,8 +24,10 @@ export const DatePick = ({ control, name }) => {
         <Controller
             name={name}
             control={control}
+            rules={{ required: true }}
             render={({ field }) => (
                 <DatePicker
+                    autoComplete='off'
                     id='releaseYear'
                     selected={field.value}
                     // selected={startDate}
@@ -35,7 +37,8 @@ export const DatePick = ({ control, name }) => {
                     dateFormat='yyyy'
                     yearItemNumber={4}
                     wrapperClassName='datePicker'
-                    className='rounded w-full text-black'
+                    // className='rounded w-full text-black'
+                    className={className}
                 />
             )}
         />
