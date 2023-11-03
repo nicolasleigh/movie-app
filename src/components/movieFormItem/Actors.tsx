@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import jsonp from 'fetch-jsonp';
 import qs from 'qs';
-import { Form, Select } from 'antd';
+import { ConfigProvider, Form, Select } from 'antd';
 import type { SelectProps } from 'antd';
 import { useReset } from '../../hooks';
+import { searchActor } from '../../api/actor';
+// import { Option } from 'antd/es/mentions';
+const { Option } = Select;
 
 let timeout: ReturnType<typeof setTimeout> | null;
 let currentValue: string;
@@ -15,26 +18,18 @@ const fetch = (value: string, callback: Function) => {
     }
     currentValue = value;
 
-    const fake = () => {
-        const str = qs.stringify({
-            code: 'utf-8',
-            q: value,
-        });
-        jsonp(`https://suggest.taobao.com/sug?${str}`)
-            .then((response: any) => response.json())
-            .then((d: any) => {
-                if (currentValue === value) {
-                    const { result } = d;
-                    const data = result.map((item: any) => ({
-                        value: item[0],
-                        text: item[0],
-                    }));
-                    callback(data);
-                }
-            });
+    const search = async () => {
+        const { results } = await searchActor(value);
+        const data = results.map((item: any) => ({
+            id: item.id,
+            value: item.name,
+            text: item.name,
+            url: item.avatar,
+        }));
+        callback(data);
     };
     if (value) {
-        timeout = setTimeout(fake, 300);
+        timeout = setTimeout(search, 300);
     } else {
         callback([]);
     }
@@ -44,15 +39,16 @@ export default function Actors({ setValue, getValues, name }: any) {
     const [data, setData] = useState<SelectProps['options']>([]);
     const [stateValue, setStateValue] = useState<string>([]);
 
-    const formHookValue = getValues(name);
+    // const formHookValue = getValues(name);
 
-    const handleSearch = (newValue: string) => {
+    const onSearch = (newValue: string) => {
         fetch(newValue, setData);
     };
 
     const { clickedReset, setClickedReset } = useReset();
     useEffect(() => {
-        if (clickedReset) setStateValue(formHookValue);
+        if (clickedReset) setStateValue([]);
+        // if (clickedReset) setStateValue(formHookValue);
         return () => setClickedReset(false);
     }, [clickedReset]);
 
@@ -68,20 +64,32 @@ export default function Actors({ setValue, getValues, name }: any) {
         <Form.Item label='Actors' name={name}>
             <Select
                 showSearch
+                maxTagCount={3}
                 value={stateValue}
-                placeholder='search actor'
+                // placeholder='search actor'
                 defaultActiveFirstOption={false}
                 suffixIcon={null}
                 filterOption={false}
-                onSearch={handleSearch}
+                onSearch={onSearch}
                 onChange={handleChange}
                 notFoundContent={null}
-                mode='tags'
-                options={(data || []).map((d) => ({
-                    value: d.value,
-                    label: d.text,
-                }))}
-            />
+                mode='multiple'
+                // options={(data || []).map((d) => ({
+                //     value: d.value,
+                //     label: d.text,
+                // }))}
+            >
+                {data?.map((item) => (
+                    <Option key={item.id} value={item.id}>
+                        <img
+                            src={item.url}
+                            alt=''
+                            className='w-10 inline-flex mr-2'
+                        />
+                        <span>{item.value}</span>
+                    </Option>
+                ))}
+            </Select>
         </Form.Item>
     );
 }

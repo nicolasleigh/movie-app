@@ -52,7 +52,7 @@ export default function ActorForm({ onClose }) {
             // setAvatarName(data.avatarName);
             // setValue('avatar', avatarName);
 
-            console.log('server res: ', data);
+            console.log('actorForm res: ', data);
         } catch (error) {
             console.log('error: ', error);
             // onError({ error });
@@ -153,7 +153,7 @@ export default function ActorForm({ onClose }) {
                         beforeUpload={() => false}
                         showUploadList={{ showPreviewIcon: false }}
                         listType='picture-card'
-                        accept='image/jpg, image/jpeg, image/png'
+                        accept='.jpg, .jpeg, .png'
                         maxCount={1}
                         onChange={handleChange}
                         defaultFileList={defaultFileList}

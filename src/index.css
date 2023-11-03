@@ -61,3 +61,17 @@ body .slick-prev::before,
 body .slick-next::before {
     display: none;
 }
+
+.datePicker {
+    width: 100%;
+    border-radius: 2px;
+}
+
+.react-datepicker__year-wrapper {
+    width: 100%;
+    max-width: 300px;
+}
+
+.select__menu {
+    color: rgb(55 65 81);
+}

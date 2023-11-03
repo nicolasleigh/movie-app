@@ -39,7 +39,7 @@ export default function MovieFormItem({
             wrapperCol={{ span: 16 }}
             labelAlign='left'
             layout='horizontal'
-            size='small'
+            size='large'
             disabled={componentDisabled}
             style={{}}
             form={form}
@@ -51,13 +51,14 @@ export default function MovieFormItem({
                 validateRules={defaultRules}
             />
             <Description control={control} name='description' />
+            <Actors setValue={setValue} getValues={getValues} name='actors' />
             <Tags control={control} name='tags' />
-            <Director
+            {/* <Director
                 control={control}
                 name='director'
                 validateRules={defaultRules}
-            />
-            <Actors setValue={setValue} getValues={getValues} name='actors' />
+            /> */}
+
             <ReleaseYear
                 control={control}
                 name='releaseYear'

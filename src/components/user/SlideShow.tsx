@@ -26,9 +26,9 @@ export default function SlideShow() {
     };
     useEffect(() => {
         fetchLatestMovie();
-        console.log('movieArr1: ', movieArr);
+        // console.log('movieArr1: ', movieArr);
     }, []);
-    console.log('movieArr2: ', movieArr);
+    // console.log('movieArr2: ', movieArr);
 
     const src = (i: number) => movieArr[i]?.poster?.[1];
     const srcSet = (i: number) =>
