@@ -1,23 +1,16 @@
 import { DatePick } from '../components/DatePick';
 import SideNav from '../components/SideNav';
-import { useForm, SubmitHandler, useController } from 'react-hook-form';
-import dayjs from 'dayjs';
-import Toast from '../components/Toast';
+import { useForm } from 'react-hook-form';
 import ActorSearch from '../components/ActorSearch';
 import GenreSelect from '../components/GenreSelect';
 import LanguageSelect from '../components/LanguageSelect';
 import TypeSelect from '../components/TypeSelect';
 import FormError from '../components/FormError';
-
-// const formStyle = 'flex items-center justify-between';
-const labelStyle = 'block text-gray-700 text-sm font-bold mb-2';
-// const inputStyle =
-//     'shadow appearance-none  border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none border-[#E5E7EB]';
-const inputStyle =
-    'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500';
-const formItemStyle = 'mb-4';
+import { useStyle } from '../hooks';
 
 export default function CreateMovie() {
+    const { labelStyle, inputStyle, formItemStyle } = useStyle();
+
     const {
         register,
         handleSubmit,
@@ -35,7 +28,7 @@ export default function CreateMovie() {
         },
     });
 
-    const onSubmit = (data) => console.log(data); //TODO
+    const onSubmit = (data: any) => console.log(data); //TODO
 
     return (
         <div className='flex'>

@@ -1,16 +1,16 @@
 import AsyncSelect from 'react-select/async';
-import { searchActor } from '../api/actor';
 import { Controller } from 'react-hook-form';
 import debounce from 'lodash.debounce';
+import { searchMovieByTitle } from '../api/movie';
 
-export default function ActorSearch({ name, control }: any) {
+export default function MovieSearch({ name, control }: any) {
     const loadOptions = debounce((inputValue, callback) => {
-        searchActor(inputValue)
+        searchMovieByTitle(inputValue)
             .then(({ results }) =>
                 callback(
                     results.map((e: any) => ({
-                        label: e.name,
-                        value: e.avatar,
+                        label: e.title,
+                        value: e.id,
                     }))
                 )
             )
@@ -24,7 +24,7 @@ export default function ActorSearch({ name, control }: any) {
             rules={{ required: true }}
             render={({ field }) => (
                 <AsyncSelect
-                inputId={name}
+                    inputId={name}
                     {...field}
                     classNamePrefix='select'
                     loadOptions={loadOptions}

@@ -47,7 +47,12 @@ export default function GenreSelect({ name, control }: any) {
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
-                <Select {...field} classNamePrefix='select' options={options} />
+                <Select
+                    {...field}
+                    inputId={name}
+                    classNamePrefix='select'
+                    options={options}
+                />
             )}
         />
     );

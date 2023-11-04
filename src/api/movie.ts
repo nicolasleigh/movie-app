@@ -56,3 +56,17 @@ export const getLatestMovie = async () => {
         if (axios.isAxiosError(error)) catchErr(error);
     }
 };
+
+export const searchMovieByTitle = async (query) => {
+    const token = getToken();
+    try {
+        const { data } = await client.get(`/movie/search?name=${query}`, {
+            headers: {
+                authorization: `Bearer ${token}`,
+            },
+        });
+        return data;
+    } catch (error) {
+        if (axios.isAxiosError(error)) catchErr(error);
+    }
+};

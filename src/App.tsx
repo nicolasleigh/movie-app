@@ -9,6 +9,7 @@ import ResetPass from './components/auth/ResetPass';
 import AdminNav from './admin/AdminNav';
 import { ConfigProvider } from 'antd';
 import CreateMovie from './pages/MovieInfoForm';
+import UploadMovie from './pages/UploadMovie';
 
 function App() {
     return (
@@ -29,6 +30,7 @@ function App() {
                     <Route path='/admin' element={<AdminNav />} />
                     <Route path='/' element={<Home />} />
                     <Route path='/create-movie' element={<CreateMovie />} />
+                    <Route path='/upload-movie' element={<UploadMovie />} />
                     <Route path='/auth/sign-in' element={<SignIn />} />
                     <Route path='/auth/sign-up' element={<SignUp />} />
                     <Route
