@@ -25,9 +25,10 @@ export default function Home() {
     const posterStyle =
         'rounded-xl w-[23%] border-8   border-stone-800/30 shadow-sm   ';
     return (
-        <div className='flex    max-w-full bg-cover m-auto max-h-full'>
+        // <div className='flex    max-w-full bg-cover m-auto max-h-full'>
+        <div className='flex '>
             <SideNav />
-            <article className='bg-stone-900 w-4/5   '>
+            <article className='bg-white flex-1  '>
                 <header className='p-4 flex justify-between'>
                     <button className={headerBtnStyle}>
                         <AiOutlineLeft />

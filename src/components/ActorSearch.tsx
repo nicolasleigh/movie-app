@@ -9,6 +9,7 @@ export default function ActorSearch({ name, control }: any) {
             .then(({ results }) =>
                 callback(
                     results.map((e: any) => ({
+                        id: e.id,
                         label: e.name,
                         value: e.avatar,
                     }))
@@ -24,7 +25,7 @@ export default function ActorSearch({ name, control }: any) {
             rules={{ required: true }}
             render={({ field }) => (
                 <AsyncSelect
-                inputId={name}
+                    inputId={name}
                     {...field}
                     classNamePrefix='select'
                     loadOptions={loadOptions}

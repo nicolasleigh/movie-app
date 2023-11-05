@@ -9,6 +9,7 @@ export default function MovieSearch({ name, control }: any) {
             .then(({ results }) =>
                 callback(
                     results.map((e: any) => ({
+                        id: e.id,
                         label: e.title,
                         value: e.id,
                     }))
@@ -21,7 +22,7 @@ export default function MovieSearch({ name, control }: any) {
         <Controller
             name={name}
             control={control}
-            rules={{ required: true }}
+            // rules={{ required: true }}
             render={({ field }) => (
                 <AsyncSelect
                     inputId={name}

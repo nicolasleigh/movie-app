@@ -59,12 +59,25 @@ export const getLatestMovie = async () => {
 
 export const searchMovieByTitle = async (query) => {
     const token = getToken();
+    console.log(query);
     try {
-        const { data } = await client.get(`/movie/search?name=${query}`, {
-            headers: {
-                authorization: `Bearer ${token}`,
-            },
-        });
+        const { data } = await client.get(
+            `/movie/search-movie?title=${query}`,
+            {
+                headers: {
+                    authorization: `Bearer ${token}`,
+                },
+            }
+        );
+        return data;
+    } catch (error) {
+        if (axios.isAxiosError(error)) catchErr(error);
+    }
+};
+
+export const getSingleMovie = async (id) => {
+    try {
+        const { data } = await client.get('/movie/single/' + id);
         return data;
     } catch (error) {
         if (axios.isAxiosError(error)) catchErr(error);

@@ -7,47 +7,29 @@ import ForgetPass from './components/auth/ForgetPass';
 import VerifyEmail from './components/auth/VerifyEmail';
 import ResetPass from './components/auth/ResetPass';
 import AdminNav from './admin/AdminNav';
-import { ConfigProvider } from 'antd';
-import CreateMovie from './pages/MovieInfoForm';
 import UploadMovie from './pages/UploadMovie';
+import MovieInfoForm from './pages/MovieInfoForm';
+import SingleMovie from './pages/SingleMovie';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 function App() {
     return (
-        <div>
-            <ConfigProvider
-                theme={{
-                    components: {
-                        Select: {
-                            // singleItemHeightLG: 50,
-                            // optionHeight: 50,
-                            multipleItemHeightLG: 40,
-                            // optionPadding: 3,
-                        },
-                    },
-                }}
-            >
-                <Routes>
-                    <Route path='/admin' element={<AdminNav />} />
-                    <Route path='/' element={<Home />} />
-                    <Route path='/create-movie' element={<CreateMovie />} />
-                    <Route path='/upload-movie' element={<UploadMovie />} />
-                    <Route path='/auth/sign-in' element={<SignIn />} />
-                    <Route path='/auth/sign-up' element={<SignUp />} />
-                    <Route
-                        path='/auth/forget-password'
-                        element={<ForgetPass />}
-                    />
-                    <Route
-                        path='/auth/verify-email'
-                        element={<VerifyEmail />}
-                    />
-                    <Route
-                        path='/auth/reset-password'
-                        element={<ResetPass />}
-                    />
-                </Routes>
-            </ConfigProvider>
-        </div>
+        <QueryClientProvider client={queryClient}>
+            <Routes>
+                <Route path='/admin' element={<AdminNav />} />
+                <Route path='/' element={<Home />} />
+                <Route path='/create-movie' element={<MovieInfoForm />} />
+                <Route path='/upload-movie' element={<UploadMovie />} />
+                <Route path='/movie/:movieId' element={<SingleMovie />} />
+                <Route path='/auth/sign-in' element={<SignIn />} />
+                <Route path='/auth/sign-up' element={<SignUp />} />
+                <Route path='/auth/forget-password' element={<ForgetPass />} />
+                <Route path='/auth/verify-email' element={<VerifyEmail />} />
+                <Route path='/auth/reset-password' element={<ResetPass />} />
+            </Routes>
+        </QueryClientProvider>
     );
 }
 

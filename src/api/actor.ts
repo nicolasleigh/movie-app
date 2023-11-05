@@ -5,7 +5,7 @@ import { client } from './client';
 export const searchActor = async (query) => {
     const token = getToken();
     try {
-        const { data } = await client.get(`/actor/search?name=${query}`, {
+        const { data } = await client.get(`/actor/search-actor?name=${query}`, {
             headers: {
                 authorization: `Bearer ${token}`,
             },

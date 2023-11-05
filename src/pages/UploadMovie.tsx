@@ -1,104 +1,125 @@
-import { useForm } from 'react-hook-form';
+import { useState, useRef } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 import SideNav from '../components/SideNav';
 import { useStyle } from '../hooks';
 import MovieSearch from '../components/MovieSearch';
 import { ImFileVideo } from 'react-icons/im';
 import { BiImage, BiMoviePlay } from 'react-icons/bi';
+import { useFormContext } from 'react-hook-form';
 
-export default function UploadMovie() {
+import UploadVideoComponent from '../components/UploadVideoComponent';
+import UploadPosterComponent from '../components/UploadPosterComponent';
+import { client } from '../api/client';
+
+interface IFileInputProps
+    extends React.DetailedHTMLProps<
+        React.InputHTMLAttributes<HTMLInputElement>,
+        HTMLInputElement
+    > {
+    label?: string;
+}
+
+export default function UploadMovie<IFileInputProps>() {
+    const toastId = useRef(null);
+    const [progress, setProgress] = useState(0);
     const { labelStyle, inputStyle, formItemStyle } = useStyle();
-    const {
-        register,
-        handleSubmit,
-        control,
-        formState: { errors },
-    } = useForm({
-        defaultValues: {
-            movieTitle: '',
-            uploadVideo: '',
-            uploadPoster: '',
-        },
+    const methods = useForm({
+        mode: 'onBlur',
     });
 
-    const onSubmit = (data: any) => console.log(data); //TODO
+    // const customRequest = async (value) => {
+    //     const { onSuccess, onError, file, onProgress } = value;
+    //     const config = {
+    //         headers: { 'content-type': 'multipart/form-data' },
+    //         onUploadProgress: (event) => {
+    //             const percent = Math.floor((event.loaded / event.total) * 100);
+    //             setProgress(percent);
+    //             if (percent === 100) {
+    //                 setTimeout(() => setProgress(0), 1000);
+    //             }
+    //             onProgress({ percent: (event.loaded / event.total) * 100 });
+    //         },
+    //     };
+    //     formData.append('poster', file);
+
+    // };
+
+    const onSubmit = methods.handleSubmit((values) => {
+        console.log('values', values);
+        const formData = new FormData();
+        formData.append('movieId', values.movieTitle);
+        formData.append('poster', values.uploadPoster);
+        formData.append('video', values.uploadVideo);
+        const config = {
+            headers: { 'content-type': 'multipart/form-data' },
+            onUploadProgress: (event) => {
+                const percent = Math.floor((event.loaded / event.total) * 100);
+                setProgress(percent);
+                if (percent === 100) {
+                    setTimeout(() => setProgress(0), 1000);
+                }
+            },
+        };
+
+        client
+            .post('/movie/upload-movie-and-poster', formData, config)
+            .then(({ data }) => {
+                console.log('server res: ', data);
+            })
+            .catch((error) => {
+                console.log('error: ', error);
+            });
+    });
+    // const {
+    //     register,
+    //     handleSubmit,
+    //     control,
+    //     formState: { errors },
+    // } = useForm({
+    //     defaultValues: {
+    //         movieTitle: '',
+    //         uploadVideo: '',
+    //         uploadPoster: '',
+    //     },
+    // });
+    // const { register, unregister, setValue, watch } = useFormContext();
+    // const files: File[] = watch(name);
+
+    // const onSubmit = (data: any) => console.log(data); //TODO
     return (
-        <div className='flex'>
-            <SideNav />
-            <div className='bg-stone-900 w-4/5 text-white pt-6 '>
-                <div className='w-full max-w-md mx-auto'>
-                    <form
-                        onSubmit={handleSubmit(onSubmit)}
-                        className='bg-red-400 shadow-md rounded px-8 pt-6 pb-8 mb-4'
-                    >
-                        <div className={formItemStyle}>
-                            <label htmlFor='movieTitle' className={labelStyle}>
-                                Movie Title
-                            </label>
-                            <MovieSearch name='movieTitle' control={control} />
-                        </div>
-
-                        <div className={formItemStyle}>
-                            <label className={labelStyle}>Upload Video</label>
-                            <div className='flex items-center justify-center w-full'>
+        <FormProvider {...methods}>
+            <div className='flex'>
+                <SideNav />
+                <div className='bg-stone-900 w-4/5 text-white pt-6 '>
+                    <div className='w-full max-w-md mx-auto'>
+                        <form
+                            onSubmit={onSubmit}
+                            className='bg-red-400 shadow-md rounded px-8 pt-6 pb-8 mb-4'
+                        >
+                            <div className={formItemStyle}>
                                 <label
-                                    htmlFor='dropzone-file'
-                                    className='flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600'
+                                    htmlFor='movieTitle'
+                                    className={labelStyle}
                                 >
-                                    <div className='flex flex-col items-center justify-center pt-5 pb-6'>
-                                        <div className='w-8 h-8 text-3xl mb-4 text-gray-500 dark:text-gray-400'>
-                                            <BiMoviePlay />
-                                        </div>
-                                        <p className='mb-2 text-sm text-gray-500 dark:text-gray-400'>
-                                            <span className='font-semibold'>
-                                                Click to upload
-                                            </span>{' '}
-                                            or drag and drop
-                                        </p>
-                                        <p className='text-xs text-gray-500 dark:text-gray-400'>
-                                            MP4, MKV, AVI
-                                        </p>
-                                    </div>
-                                    <input
-                                        id='dropzone-file'
-                                        type='file'
-                                        className='hidden'
-                                    />
+                                    Movie Title
                                 </label>
+                                <MovieSearch
+                                    name='movieTitle'
+                                    // control={control}
+                                />
                             </div>
-                        </div>
-
-                        <div className={formItemStyle}>
-                            <label className={labelStyle}>Upload Poster</label>
-                            <div className='flex items-center justify-center w-full'>
-                                <label
-                                    htmlFor='dropzone-file'
-                                    className='flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600'
-                                >
-                                    <div className='flex flex-col items-center justify-center pt-5 pb-6'>
-                                        <div className='w-8 h-8 text-3xl mb-4 text-gray-500 dark:text-gray-400'>
-                                            <BiImage />
-                                        </div>
-                                        <p className='mb-2 text-sm text-gray-500 dark:text-gray-400'>
-                                            <span className='font-semibold'>
-                                                Click to upload
-                                            </span>{' '}
-                                            or drag and drop
-                                        </p>
-                                        <p className='text-xs text-gray-500 dark:text-gray-400'>
-                                            JPG, JPEG, PNG
-                                        </p>
-                                    </div>
-                                    <input
-                                        id='dropzone-file'
-                                        type='file'
-                                        className='hidden'
-                                    />
-                                </label>
-                            </div>
-                        </div>
-                    </form>
+                            <UploadVideoComponent name='uploadVideo' />
+                            <UploadPosterComponent name='uploadPoster' />
+                            <button
+                                type='submit'
+                                className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:outline-blue-500'
+                            >
+                                Submit
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        </FormProvider>
     );
 }

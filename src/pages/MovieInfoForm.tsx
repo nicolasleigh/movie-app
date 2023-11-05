@@ -1,14 +1,15 @@
 import { DatePick } from '../components/DatePick';
 import SideNav from '../components/SideNav';
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import ActorSearch from '../components/ActorSearch';
 import GenreSelect from '../components/GenreSelect';
 import LanguageSelect from '../components/LanguageSelect';
 import TypeSelect from '../components/TypeSelect';
 import FormError from '../components/FormError';
 import { useStyle } from '../hooks';
+import { client } from '../api/client';
 
-export default function CreateMovie() {
+export default function MovieInfoForm() {
     const { labelStyle, inputStyle, formItemStyle } = useStyle();
 
     const {
@@ -28,7 +29,21 @@ export default function CreateMovie() {
         },
     });
 
-    const onSubmit = (data: any) => console.log(data); //TODO
+
+    const onSubmit: SubmitHandler<any> = async (data) => {
+        const strData = JSON.stringify(data);
+        console.log('onSubmit data', data);
+        try {
+            const response = await client.post('/movie/create-movie', strData, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            console.log('onSubmit res', response);
+        } catch (error) {
+            console.log('error:', error);
+        }
+    };
 
     return (
         <div className='flex'>
