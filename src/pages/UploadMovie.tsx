@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import { toast } from 'react-toastify';
 import { FormProvider, useForm } from 'react-hook-form';
 import SideNav from '../components/SideNav';
 import { useStyle } from '../hooks';
@@ -27,36 +28,22 @@ export default function UploadMovie<IFileInputProps>() {
         mode: 'onBlur',
     });
 
-    // const customRequest = async (value) => {
-    //     const { onSuccess, onError, file, onProgress } = value;
-    //     const config = {
-    //         headers: { 'content-type': 'multipart/form-data' },
-    //         onUploadProgress: (event) => {
-    //             const percent = Math.floor((event.loaded / event.total) * 100);
-    //             setProgress(percent);
-    //             if (percent === 100) {
-    //                 setTimeout(() => setProgress(0), 1000);
-    //             }
-    //             onProgress({ percent: (event.loaded / event.total) * 100 });
-    //         },
-    //     };
-    //     formData.append('poster', file);
-
-    // };
-
     const onSubmit = methods.handleSubmit((values) => {
         console.log('values', values);
         const formData = new FormData();
-        formData.append('movieId', values.movieTitle);
-        formData.append('poster', values.uploadPoster);
-        formData.append('video', values.uploadVideo);
+        formData.append('movieId', values.movieTitle[0].id);
+        formData.append('poster', values.uploadPoster[0]);
+        formData.append('video', values.uploadVideo[0]);
         const config = {
             headers: { 'content-type': 'multipart/form-data' },
-            onUploadProgress: (event) => {
-                const percent = Math.floor((event.loaded / event.total) * 100);
-                setProgress(percent);
-                if (percent === 100) {
-                    setTimeout(() => setProgress(0), 1000);
+            onUploadProgress: (p) => {
+                const progress = p.loaded / p.total;
+
+                // check if we already displayed a toast
+                if (toastId.current === null) {
+                    toastId.current = toast('Upload in Progress', { progress });
+                } else {
+                    toast.update(toastId.current, { progress });
                 }
             },
         };
@@ -65,27 +52,13 @@ export default function UploadMovie<IFileInputProps>() {
             .post('/movie/upload-movie-and-poster', formData, config)
             .then(({ data }) => {
                 console.log('server res: ', data);
+                toast.done(toastId.current);
             })
             .catch((error) => {
                 console.log('error: ', error);
             });
     });
-    // const {
-    //     register,
-    //     handleSubmit,
-    //     control,
-    //     formState: { errors },
-    // } = useForm({
-    //     defaultValues: {
-    //         movieTitle: '',
-    //         uploadVideo: '',
-    //         uploadPoster: '',
-    //     },
-    // });
-    // const { register, unregister, setValue, watch } = useFormContext();
-    // const files: File[] = watch(name);
 
-    // const onSubmit = (data: any) => console.log(data); //TODO
     return (
         <FormProvider {...methods}>
             <div className='flex'>

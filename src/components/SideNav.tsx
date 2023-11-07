@@ -109,14 +109,17 @@ export default function SideNav() {
                             </ul>
                         </li>
                         <li>
-                            <a className='flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group'>
-                                <span className='flex-1 ml-3 whitespace-nowrap'>
-                                    Messages
-                                </span>
+                            <div className='flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group'>
+                                <Link to='/movie/653f5852e98aadd81b1f5ce2'>
+                                    <span className='flex-1 ml-3 whitespace-nowrap'>
+                                        Single Movie
+                                    </span>
+                                </Link>
+
                                 <span className='inline-flex justify-center items-center w-5 h-5 text-xs font-semibold rounded-full text-primary-800 bg-primary-100 dark:bg-primary-200 dark:text-primary-800'>
                                     6
                                 </span>
-                            </a>
+                            </div>
                         </li>
                         <li>
                             <button

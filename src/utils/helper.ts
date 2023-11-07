@@ -23,5 +23,7 @@ export const getToken = () => localStorage.getItem('auth-token');
 
 export const catchErr = (error: AxiosError) => {
     const message = error.response?.data || error.message;
-    return { error: message };
+    throw new Error(message.error);
+    // return { data: message };
+    // return { error: message };
 };
