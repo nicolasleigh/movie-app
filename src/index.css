@@ -88,3 +88,9 @@ body .slick-next::before {
 .select-error:hover div {
     border-color: #e74c3c;
 } */
+
+::cue {
+    color: red;
+    background-color: blue;
+    font-size: 10px;
+}
