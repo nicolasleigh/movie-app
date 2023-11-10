@@ -128,9 +128,11 @@ export default function SideNav() {
                                 aria-controls='dropdown-authentication'
                                 data-collapse-toggle='dropdown-authentication'
                             >
-                                <span className='flex-1 ml-3 text-left whitespace-nowrap'>
-                                    Authentication
-                                </span>
+                                <Link to='/review/654222479d08565167bd62ec'>
+                                    <span className='flex-1 ml-3 text-left whitespace-nowrap'>
+                                        Add Review
+                                    </span>
+                                </Link>
                             </button>
                             <ul
                                 id='dropdown-authentication'
@@ -156,9 +158,11 @@ export default function SideNav() {
                     </ul>
                     <ul className='pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700'>
                         <li>
-                            <a className='flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group'>
-                                <span className='ml-3'>Docs</span>
-                            </a>
+                            <div className='flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group'>
+                                <Link to='/movieInfo/654222479d08565167bd62ec'>
+                                    <span className='ml-3'>Movie Info</span>
+                                </Link>
+                            </div>
                         </li>
                         <li>
                             <a className='flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group'>

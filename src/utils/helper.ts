@@ -27,3 +27,8 @@ export const catchErr = (error: AxiosError) => {
     // return { data: message };
     // return { error: message };
 };
+
+export const trimText = (text = '', length = 20) => {
+    if (text.length <= length) return text;
+    return text.substring(0, length) + '...';
+};

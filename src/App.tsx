@@ -11,6 +11,8 @@ import UploadMovie from './pages/UploadMovie';
 import MovieInfoForm from './pages/MovieInfoForm';
 import SingleMovie from './pages/SingleMovie';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import AddReview from './pages/AddReview';
+import MovieInfo from './pages/MovieInfo';
 
 const queryClient = new QueryClient();
 
@@ -23,6 +25,8 @@ function App() {
                 <Route path='/create-movie' element={<MovieInfoForm />} />
                 <Route path='/upload-movie' element={<UploadMovie />} />
                 <Route path='/movie/:movieId' element={<SingleMovie />} />
+                <Route path='/review/:movieId' element={<AddReview />} />
+                <Route path='/movieInfo/:movieId' element={<MovieInfo />} />
                 <Route path='/auth/sign-in' element={<SignIn />} />
                 <Route path='/auth/sign-up' element={<SignUp />} />
                 <Route path='/auth/forget-password' element={<ForgetPass />} />
