@@ -59,7 +59,7 @@ export const getLatestMovie = async () => {
 
 export const searchMovieByTitle = async (query) => {
     const token = getToken();
-    console.log(query);
+    // console.log(query);
     try {
         const { data } = await client.get(
             `/movie/search-movie?title=${query}`,

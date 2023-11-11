@@ -14,6 +14,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AddReview from './pages/AddReview';
 import MovieInfo from './pages/MovieInfo';
 
+
 const queryClient = new QueryClient();
 
 function App() {

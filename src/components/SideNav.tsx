@@ -14,7 +14,7 @@ export default function SideNav() {
     // );
 
     return (
-        <div className=''>
+        <div className='fixed w-60 '>
             <button
                 data-drawer-target='default-sidebar'
                 data-drawer-toggle='default-sidebar'

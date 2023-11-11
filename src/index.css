@@ -103,3 +103,39 @@ body .slick-next::before {
     flex-direction: column;
     background-color: var(--media-secondary-color, rgb(20 20 30 / 0.7));
 }
+
+#hero > * .slick-arrow.slick-prev {
+    @apply bg-gray-200 p-1 rounded w-7 h-7 mr-3;
+}
+/* .slick-arrow.slick-prev.slick-prev:hover {
+    @apply bg-blue-500;
+} */
+#hero > * .slick-arrow.slick-next {
+    @apply bg-gray-200 p-1 rounded w-7 h-7;
+}
+/* .slick-arrow.slick-next.slick-next:hover {
+    @apply bg-red-600;
+} */
+
+#hero > * .slick-slide.slick-center {
+    transform: scale(1.08);
+}
+
+#hero > * .slick-slide:not(.slick-center) {
+    /* cursor: pointer;  */
+    opacity: 0.5;
+}
+
+.header-select__control {
+    width: 300px;
+}
+.header-select__input {
+    @apply focus:ring-0;
+}
+
+.slick-active {
+    border: none;
+}
+#img2 {
+    box-shadow: 0 0 18px 8px red inset;
+}

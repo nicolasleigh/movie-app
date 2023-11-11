@@ -9,6 +9,11 @@ import {
 import Navbar from '../components/user/Navbar';
 import SlideShow from '../components/user/SlideShow';
 import SideNav from '../components/SideNav';
+import HeroSlide from '../components/HeroSlide';
+import TopRatedMovie from '../components/TopRatedMovie';
+import LatestMovie from '../components/LatestMovie';
+import TrailerList from '../components/TrailerList';
+import HeaderSearch from '../components/HeaderSearch';
 
 // export default function Home() {
 //     return (
@@ -28,22 +33,24 @@ export default function Home() {
         // <div className='flex    max-w-full bg-cover m-auto max-h-full'>
         <div className='flex '>
             <SideNav />
-            <article className='bg-white flex-1  '>
-                <header className='p-4 flex justify-between'>
-                    <button className={headerBtnStyle}>
-                        <AiOutlineLeft />
-                    </button>
-                    <div className='space-x-3'>
-                        <button className={headerBtnStyle}>
-                            <AiOutlineUser />
-                        </button>
-                        <button className={headerBtnStyle}>
-                            <AiOutlineSetting />
-                        </button>
+            <article className='bg-white flex-1 w-3/4 '>
+                <header className='p-4 flex justify-between ml-60 '>
+                    <div className='flex w-3/4 mx-auto items-center justify-between'>
+                        <HeaderSearch />
+                        <div className='space-x-3'>
+                            <button className={headerBtnStyle}>
+                                <AiOutlineUser />
+                            </button>
+                            <button className={headerBtnStyle}>
+                                <AiOutlineSetting />
+                            </button>
+                        </div>
                     </div>
                 </header>
-                <section className='relative mx-4 mb-4 h-64 md:h-[500px]  '>
-                    <div className='absolute inset-0 rounded-2xl bg-gradient-to-r from-black  '></div>
+                <section className='px-8 py-4 ml-60'>
+                    <HeroSlide />
+                </section>
+                {/* <div className='absolute inset-0 rounded-2xl bg-gradient-to-r from-black  '></div>
                     <img
                         src='/stranger-things.jpg'
                         alt='stranger things wallpaper'
@@ -67,73 +74,16 @@ export default function Home() {
                     <button className='absolute top-3/4 translate-y-4 left-2 flex items-center space-x-3  rounded-2xl text-white text-sm shadow-md bg-slate-500 opacity-90 hover:bg-slate-400 py-1 px-3 '>
                         <span>Watch</span>
                         <AiOutlineRight />
-                    </button>
+                    </button> */}
+
+                <section className='flex justify-between  px-4 mb-4 ml-60 '>
+                    <TopRatedMovie />
                 </section>
-                <section className='flex justify-between  px-4 mb-4'>
-                    <img
-                        src='/poster/215333h1.jpg'
-                        alt=''
-                        className={posterStyle}
-                    />
-                    <img
-                        src='/poster/325348h1.jpg'
-                        alt=''
-                        className={posterStyle}
-                    />
-                    <img
-                        src='/poster/331707h1.jpg'
-                        alt=''
-                        className={posterStyle}
-                    />
-                    <img
-                        src='/poster/334001h1.jpg'
-                        alt=''
-                        className={posterStyle}
-                    />
+                <section className='flex justify-between px-4 mb-4 ml-60'>
+                    <LatestMovie />
                 </section>
-                <section className='flex justify-between px-4 mb-4'>
-                    <img
-                        src='/poster/342791h1.jpg'
-                        alt=''
-                        className={posterStyle}
-                    />
-                    <img
-                        src='/poster/336686h1.jpg'
-                        alt=''
-                        className={posterStyle}
-                    />
-                    <img
-                        src='/poster/338990h1.jpg'
-                        alt=''
-                        className={posterStyle}
-                    />
-                    <img
-                        src='/poster/341620h1.jpg'
-                        alt=''
-                        className={posterStyle}
-                    />
-                </section>
-                <section className='flex justify-between px-4 mb-4'>
-                    <img
-                        src='/poster/343720h1.jpg'
-                        alt=''
-                        className={posterStyle}
-                    />
-                    <img
-                        src='/poster/343721h1.jpg'
-                        alt=''
-                        className={posterStyle}
-                    />
-                    <img
-                        src='/poster/344719h1.jpg'
-                        alt=''
-                        className={posterStyle}
-                    />
-                    <img
-                        src='/poster/345305h1.jpg'
-                        alt=''
-                        className={posterStyle}
-                    />
+                <section className='flex justify-between px-4 mb-4 ml-60'>
+                    <TrailerList />
                 </section>
             </article>
         </div>

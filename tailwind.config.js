@@ -18,6 +18,9 @@ export default {
                 'home-background': "url('/dark-background.jpeg')",
                 // 'section-background': "url('/dark-wallpaper.png')"
             },
+            boxShadow: {
+                inset: '0 0 18px 8px red inset',
+            },
         },
     },
     plugins: [require('flowbite/plugin')],

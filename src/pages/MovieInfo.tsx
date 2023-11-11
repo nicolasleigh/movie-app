@@ -15,11 +15,11 @@ import { BsPlay } from 'react-icons/bs';
 import { trimText } from '../utils/helper';
 import MovieDescModal from '../components/MovieDescModal';
 
-export default function MovieInfo() {
+export default function MovieInfo({ movieId }) {
     const [showDescModal, setShowDescModal] = useState(false);
     const [isHeartClicked, setIsHeartClicked] = useState(false);
     const { notify } = useToast();
-    const { movieId } = useParams();
+    // const { movieId } = useParams();
     const { isPending, isError, error, data } = useQuery({
         queryKey: ['singleMovie', movieId],
         queryFn: () => getSingleMovie(movieId),
@@ -64,8 +64,6 @@ export default function MovieInfo() {
     };
     return (
         <div className='flex'>
-            <SideNav />
-
             <div className='space-y-8 justify-center  md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-center'>
                 <div className='flex ml-4 items-center justify-center w-full h-64 bg-gray-300 rounded sm:w-52 dark:bg-gray-700'>
                     Poster
