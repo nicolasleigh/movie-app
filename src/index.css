@@ -136,6 +136,33 @@ body .slick-next::before {
 .slick-active {
     border: none;
 }
-#img2 {
+.img2 {
     box-shadow: 0 0 18px 8px red inset;
+}
+
+/* img {
+    border: 2px solid #000;
+    box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.8);
+} */
+
+p img {
+    padding: 2px;
+    border: 2px solid #7eb4e2;
+    /* background: linear-gradient(white, white) padding-box,
+        repeating-linear-gradient(
+                -45deg,
+                #f69ec4 0,
+                #f69ec4 12.5%,
+                transparent 0,
+                transparent 25%,
+                #7eb4e2 0,
+                #7eb4e2 37.5%,
+                transparent 0,
+                transparent 50%
+            )
+            0 / 5em 5em; */
+}
+
+.slick-slide {
+    outline: none;
 }

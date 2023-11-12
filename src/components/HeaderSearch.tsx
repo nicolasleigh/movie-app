@@ -9,6 +9,7 @@ import { AiOutlineCheck } from 'react-icons/ai';
 
 export default function HeaderSearch() {
     const [showMovieInfo, setShowMovieInfo] = useState(false);
+    const [showModal, setShowModal] = useState(true);
     const [movieId, setMovieId] = useState(false);
     const { handleSubmit, control } = useForm();
     const loadOptions = debounce((inputValue, callback) => {
@@ -28,6 +29,7 @@ export default function HeaderSearch() {
     const handleOnSubmit = ({ movie }: any) => {
         setMovieId(movie.id);
         setShowMovieInfo(true);
+        setShowModal(true);
     };
 
     const DropdownIndicator: React.FC<DropdownIndicatorProps> = (props) => {
@@ -59,7 +61,13 @@ export default function HeaderSearch() {
                     )}
                 />
             </form>
-            {showMovieInfo ? <MovieInfo movieId={movieId} /> : null}
+            {showMovieInfo ? (
+                <MovieInfo
+                    movieId={movieId}
+                    showModal={showModal}
+                    setShowModal={setShowModal}
+                />
+            ) : null}
         </>
     );
 }

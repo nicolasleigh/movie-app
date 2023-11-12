@@ -15,55 +15,55 @@ export default function TopRatedMovie() {
         <div className='w-3/4 mx-auto mb-5'>
             <h2>Top Rated Movie</h2>
             <Slider {...settings}>
-                <div className='p-2'>
+                <p className='p-2'>
                     <img
                         src='/poster/215333h1.jpg'
                         alt=''
                         className={homeImageStyle}
                     />
-                </div>
-                <div className='p-2'>
+                </p>
+                <p className='p-2'>
                     <img
                         src='/poster/325348h1.jpg'
                         alt=''
                         className={homeImageStyle}
                     />
-                </div>
-                <div className='p-2'>
+                </p>
+                <p className='p-2'>
                     <img
                         src='/poster/331707h1.jpg'
                         alt=''
                         className={homeImageStyle}
                     />
-                </div>
-                <div className='p-2'>
+                </p>
+                <p className='p-2'>
                     <img
                         src='/poster/334001h1.jpg'
                         alt=''
                         className={homeImageStyle}
                     />
-                </div>
-                <div className='p-2'>
+                </p>
+                <p className='p-2'>
                     <img
                         src='/poster/325348h1.jpg'
                         alt=''
                         className={homeImageStyle}
                     />
-                </div>
-                <div className='p-2'>
+                </p>
+                <p className='p-2'>
                     <img
                         src='/poster/331707h1.jpg'
                         alt=''
                         className={homeImageStyle}
                     />
-                </div>
-                <div className='p-2'>
+                </p>
+                <p className='p-2'>
                     <img
                         src='/poster/334001h1.jpg'
                         alt=''
                         className={homeImageStyle}
                     />
-                </div>
+                </p>
             </Slider>
         </div>
     );
