@@ -19,7 +19,7 @@ export default function AddReview({
     title,
     initialState,
     onClose,
-    setShowReviewModal,
+    setShowRateModal,
 }) {
     const navigate = useNavigate();
     const { notify } = useToast();
@@ -59,7 +59,7 @@ export default function AddReview({
                 <div className='relative bg-white shadow-2xl rounded-lg  dark:bg-gray-700'>
                     <button
                         type='button'
-                        onClick={() => setShowReviewModal(false)}
+                        onClick={() => setShowRateModal(false)}
                         className='absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white'
                         data-modal-hide='authentication-modal'
                     >

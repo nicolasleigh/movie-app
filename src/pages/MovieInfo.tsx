@@ -15,9 +15,13 @@ import { BsPlay } from 'react-icons/bs';
 import { trimText } from '../utils/helper';
 import MovieDescModal from '../components/MovieDescModal';
 import AddReview from './AddReview';
+import { RiHeartAddLine, RiHeartFill } from 'react-icons/ri';
+import { BiRightArrowAlt } from 'react-icons/bi';
+import ShowReview from './ShowReview';
 
 export default function MovieInfo({ movieId, showModal, setShowModal }) {
     const [showDescModal, setShowDescModal] = useState(false);
+    const [showRateModal, setShowRateModal] = useState(false);
     const [showReviewModal, setShowReviewModal] = useState(false);
     const [isHeartClicked, setIsHeartClicked] = useState(false);
     const { notify } = useToast();
@@ -75,6 +79,7 @@ export default function MovieInfo({ movieId, showModal, setShowModal }) {
     const handleClick = () => {
         setShowModal(false);
         setShowDescModal(false);
+        setShowRateModal(false);
         setShowReviewModal(false);
     };
 
@@ -101,7 +106,7 @@ export default function MovieInfo({ movieId, showModal, setShowModal }) {
                             onClick={() => setShowDescModal(true)}
                             className='text-left mb-4'
                         >
-                            {trimText(description, 200)}
+                            {trimText(description, 150)}
                         </button>
                         {showDescModal && (
                             <MovieDescModal
@@ -111,58 +116,71 @@ export default function MovieInfo({ movieId, showModal, setShowModal }) {
                         )}
 
                         {/* <div className='mb-4'>Actors</div> */}
-                        <div className='flex items-center text-red-700 mb-4'>
-                            <AiFillStar />
-                            <AiFillStar />
-                            <AiFillStar />
-                            <AiFillStar />
-                            <AiOutlineStar />
-                        </div>
-                        <div className='flex space-x-3 justify-between'>
-                            <Link
-                                to={`/movie/${id}`}
-                                className='flex items-center bg-red-300 rounded p-2 space-x-3'
+                        <div className='flex justify-between items-center mb-4'>
+                            <div className='flex items-center text-red-700 '>
+                                <AiFillStar />
+                                <AiFillStar />
+                                <AiFillStar />
+                                <AiFillStar />
+                                <AiOutlineStar />
+                            </div>
+                            <button
+                                onClick={handleClickHeart}
+                                className='text-red-700'
                             >
-                                <span>Play</span>
-                                <div className=' '>
-                                    <BsPlay />
-                                </div>
-                            </Link>
-                            <div className='flex space-x-4'>
-                                <button
-                                    onClick={handleClickHeart}
-                                    className='text-red-700'
-                                >
-                                    {isHeartClicked ? (
-                                        <AiFillHeart />
-                                    ) : (
-                                        <AiOutlineHeart />
-                                    )}
-                                </button>
-
-                                <button
-                                    onClick={() => setShowReviewModal(true)}
-                                    className='flex items-center'
-                                >
-                                    <span>Rate Movie</span>
-                                    <AiOutlineRight />
-                                </button>
-
-                                {showReviewModal && (
-                                    <AddReview
-                                        title={title}
-                                        setShowReviewModal={setShowReviewModal}
-                                    />
+                                {isHeartClicked ? (
+                                    <RiHeartFill />
+                                ) : (
+                                    <RiHeartAddLine />
                                 )}
+                            </button>
+                        </div>
 
-                                {/* <Link
+                        <Link
+                            to={`/movie/${id}`}
+                            className='flex items-center justify-center bg-red-300 rounded p-2 space-x-1'
+                        >
+                            {' '}
+                            <div className=' '>
+                                <BsPlay />
+                            </div>
+                            <span>Play</span>
+                        </Link>
+                        <div className='flex justify-between items-center mt-4'>
+                            <button
+                                onClick={() => setShowRateModal(true)}
+                                className='flex text-sm items-center font-medium text-blue-600 dark:text-blue-500 hover:underline'
+                            >
+                                <span className=''>Rate movie</span>
+                                <BiRightArrowAlt />
+                            </button>
+                            <button
+                                onClick={() => setShowReviewModal(true)}
+                                className='flex text-sm items-center font-medium text-blue-600 dark:text-blue-500 hover:underline'
+                            >
+                                <span className=''>Show reviews</span>
+                                <BiRightArrowAlt />
+                            </button>
+
+                            {showRateModal && (
+                                <AddReview
+                                    title={title}
+                                    setShowRateModal={setShowRateModal}
+                                />
+                            )}
+                            {showReviewModal && (
+                                <ShowReview
+                                    setShowReviewModal={setShowReviewModal}
+                                />
+                            )}
+
+                            {/* <Link
                                     to={`/review/${id}`}
                                     className='flex items-center'
                                 >
                                     <span>Rate Movie</span>
                                     <AiOutlineRight />
                                 </Link> */}
-                            </div>
                         </div>
                     </div>
                 </div>

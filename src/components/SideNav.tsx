@@ -172,6 +172,20 @@ export default function SideNav() {
                             </div>
                         </li>
                         <li>
+                            <div className='flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group'>
+                                <Link to='/favorites'>
+                                    <span className='ml-3'>Favorites</span>
+                                </Link>
+                            </div>
+                        </li>
+                        <li>
+                            <div className='flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group'>
+                                <Link to='/overview'>
+                                    <span className='ml-3'>Overview</span>
+                                </Link>
+                            </div>
+                        </li>
+                        <li>
                             <a className='flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group'>
                                 <span className='ml-3'>Help</span>
                             </a>
