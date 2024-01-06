@@ -6,19 +6,19 @@ import { ResetProvider } from './ResetProvider';
 import { StyleProvider } from './StyleProvider';
 
 interface Props {
-    children: ReactNode;
+  children: ReactNode;
 }
 
 export const ContextProvider = ({ children }: Props) => {
-    return (
-        <ToastProvider>
-            <AuthProvider>
-                <StyleProvider>
-                    <ResetProvider>
-                        <ThemeProvider>{children}</ThemeProvider>
-                    </ResetProvider>
-                </StyleProvider>
-            </AuthProvider>
-        </ToastProvider>
-    );
+  return (
+    <ToastProvider>
+      <AuthProvider>
+        <StyleProvider>
+          <ResetProvider>
+            <ThemeProvider>{children}</ThemeProvider>
+          </ResetProvider>
+        </StyleProvider>
+      </AuthProvider>
+    </ToastProvider>
+  );
 };

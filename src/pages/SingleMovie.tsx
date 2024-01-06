@@ -8,22 +8,23 @@ import MediaChrome from '../components/MediaChrome';
 import AddReview from './AddReview';
 
 export default function SingleMovie() {
-    const [showAddReview, setShowAddReview] = useState(false);
+  const [showAddReview, setShowAddReview] = useState(false);
 
-    const videoSrc =
-        import.meta.env.VITE_MOVIE_BASE_URL +
-        '/video-616b652c-5cf0-43ea-a632-b9a2146b5975/720p/' +
-        'output.m3u8';
-    const trackSrc =
-        import.meta.env.VITE_MOVIE_BASE_URL +
-        'House.of.Cards.S04E03.WEBRip.DEFLATE.en.vtt';
+  const videoSrc =
+    import.meta.env.VITE_MOVIE_BASE_URL +
+    'video-97f2023b-fff9-4735-95a8-5f344ba5d0de/' +
+    'master.m3u8';
+  // const trackSrc =
+  //   import.meta.env.VITE_MOVIE_BASE_URL +
+  //   '';
 
-    if (showAddReview) return <AddReview title={title} />;
-    return (
-        <div className='flex'>
-            <SideNav />
-            <MediaChrome videoSrc={videoSrc} trackSrc={trackSrc} />
-            <button onClick={() => setShowAddReview(true)}>Add Review</button>
-        </div>
-    );
+  if (showAddReview) return <AddReview title={title} />;
+  return (
+    <div className='flex'>
+      <SideNav />
+      {/* <MediaChrome videoSrc={videoSrc} trackSrc={trackSrc} /> */}
+      <MediaChrome videoSrc={videoSrc} trackSrc />
+      <button onClick={() => setShowAddReview(true)}>Add Review</button>
+    </div>
+  );
 }
