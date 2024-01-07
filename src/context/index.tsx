@@ -4,6 +4,7 @@ import { ToastProvider } from './ToastProvider';
 import { AuthProvider } from './AuthProvider';
 import { ResetProvider } from './ResetProvider';
 import { StyleProvider } from './StyleProvider';
+import { RateProvider } from './RateProvider';
 
 interface Props {
   children: ReactNode;
@@ -15,7 +16,9 @@ export const ContextProvider = ({ children }: Props) => {
       <AuthProvider>
         <StyleProvider>
           <ResetProvider>
-            <ThemeProvider>{children}</ThemeProvider>
+            <RateProvider>
+              <ThemeProvider>{children}</ThemeProvider>
+            </RateProvider>
           </ResetProvider>
         </StyleProvider>
       </AuthProvider>

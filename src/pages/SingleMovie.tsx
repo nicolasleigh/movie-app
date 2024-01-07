@@ -1,30 +1,50 @@
 import { useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { getSingleMovie } from '../api/movie';
-import { useToast } from '../hooks';
+import { useRate, useToast } from '../hooks';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import SideNav from '../components/SideNav';
 import MediaChrome from '../components/MediaChrome';
 import AddReview from './AddReview';
 
-export default function SingleMovie() {
-  const [showAddReview, setShowAddReview] = useState(false);
+const videoUrl = import.meta.env.VITE_MOVIE_BASE_URL;
 
-  const videoSrc =
-    import.meta.env.VITE_MOVIE_BASE_URL +
-    'video-97f2023b-fff9-4735-95a8-5f344ba5d0de/' +
-    'master.m3u8';
+export default function SingleMovie() {
+  const navigate = useNavigate();
+  const [showAddReview, setShowAddReview] = useState(false);
+  const { state } = useLocation();
+  const { showRateModal, setShowRateModal } = useRate();
+
+  const videoFolder = state.videoName.substring(
+    0,
+    state.videoName.lastIndexOf('.')
+  );
+
+  const videoSrc = videoUrl + videoFolder + '/master.m3u8';
+
   // const trackSrc =
   //   import.meta.env.VITE_MOVIE_BASE_URL +
   //   '';
 
-  if (showAddReview) return <AddReview title={title} />;
+  if (showRateModal)
+    return (
+      <AddReview title={state.title} setShowRateModal={setShowRateModal} />
+    );
   return (
-    <div className='flex'>
-      <SideNav />
+    <div className='flex bg-black h-screen flex-col p-2'>
+      <h2 className='text-white'>{state.title}</h2>
+      {/* <SideNav /> */}
       {/* <MediaChrome videoSrc={videoSrc} trackSrc={trackSrc} /> */}
-      <MediaChrome videoSrc={videoSrc} trackSrc />
-      <button onClick={() => setShowAddReview(true)}>Add Review</button>
+      <MediaChrome videoSrc={videoSrc} />
+      <button className='text-white' onClick={() => setShowRateModal(true)}>
+        Add Review
+      </button>
+      <button
+        onClick={() => navigate(-1)}
+        className='text-white border max-w-md mx-auto p-4 '
+      >
+        &larr; Back
+      </button>
     </div>
   );
 }

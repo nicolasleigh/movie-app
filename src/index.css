@@ -4,39 +4,39 @@
 
 /* custom scrollbar css  https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp */
 .custom-scroll-bar::-webkit-scrollbar {
-    width: 2px;
-    height: 4px;
+  width: 2px;
+  height: 4px;
 }
 
 /* Track */
 .custom-scroll-bar::-webkit-scrollbar-track {
-    background: #eee;
+  background: #eee;
 }
 
 /* Handle */
 .custom-scroll-bar::-webkit-scrollbar-thumb {
-    background: rgb(224, 201, 251);
+  background: rgb(224, 201, 251);
 }
 
 /* Handle on hover */
 .custom-scroll-bar::-webkit-scrollbar-thumb:hover {
-    background: rgb(143, 190, 245);
+  background: rgb(143, 190, 245);
 }
 
 /* hide scroll bar */
 @layer utilities {
-    @layer responsive {
-        /* Hide scrollbar for Chrome, Safari and Opera */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-
-        /* Hide scrollbar for IE, Edge and Firefox */
-        .no-scrollbar {
-            -ms-overflow-style: none; /* IE and Edge */
-            scrollbar-width: none; /* Firefox */
-        }
+  @layer responsive {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
     }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+  }
 }
 
 /* .ant-upload-list-item-actions {
@@ -46,39 +46,39 @@
 /* Slide show */
 .ant-carousel .slick-prev,
 .ant-carousel .slick-next {
-    color: unset;
-    font-size: unset;
+  color: unset;
+  font-size: unset;
 }
 
 .ant-carousel .slick-prev:hover,
 .ant-carousel .slick-next:hover,
 .ant-carousel .slick-prev:focus,
 .ant-carousel .slick-next:focus {
-    color: unset;
+  color: unset;
 }
 
 body .slick-prev::before,
 body .slick-next::before {
-    display: none;
+  display: none;
 }
 
 .datePicker {
-    width: 100%;
-    border-radius: 2px;
+  width: 100%;
+  border-radius: 2px;
 }
 
 .react-datepicker__year-wrapper {
-    width: 100%;
-    max-width: 300px;
+  width: 100%;
+  max-width: 300px;
 }
 
 .select__menu {
-    color: rgb(55 65 81);
+  color: rgb(55 65 81);
 }
 
 /* https://stackoverflow.com/questions/68137362/using-tailwind-forms-plugin-with-react-select */
 .select__input {
-    @apply focus:ring-0;
+  @apply focus:ring-0;
 }
 
 /* .select-error div {
@@ -90,54 +90,78 @@ body .slick-next::before {
 } */
 
 ::cue {
-    /* color: red;
+  /* color: red;
     background-color: blue;
     font-size: 10px; */
 }
 
 #spacer {
-    flex-grow: 1;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    background-color: var(--media-secondary-color, rgb(20 20 30 / 0.7));
+  flex-grow: 1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: var(--media-secondary-color, rgb(20 20 30 / 0.7));
 }
 
 #hero > * .slick-arrow.slick-prev {
-    @apply bg-gray-200 p-1 rounded w-7 h-7 mr-3;
+  @apply bg-gray-200 p-1 rounded w-7 h-7 mr-3;
 }
 /* .slick-arrow.slick-prev.slick-prev:hover {
     @apply bg-blue-500;
 } */
 #hero > * .slick-arrow.slick-next {
-    @apply bg-gray-200 p-1 rounded w-7 h-7;
+  @apply bg-gray-200 p-1 rounded w-7 h-7;
 }
 /* .slick-arrow.slick-next.slick-next:hover {
     @apply bg-red-600;
 } */
 
 #hero > * .slick-slide.slick-center {
-    transform: scale(1.08);
+  transform: scale(1.08);
 }
 
 #hero > * .slick-slide:not(.slick-center) {
-    /* cursor: pointer;  */
-    opacity: 0.5;
+  /* cursor: pointer;  */
+  opacity: 0.5;
 }
 
 .header-select__control {
-    width: 300px;
+  width: 300px;
 }
 .header-select__input {
-    @apply focus:ring-0;
+  @apply focus:ring-0;
 }
 
 .slick-active {
-    border: none;
+  border: none;
+}
+
+.slick-dots button::before {
+  color: white !important;
+  font-size: 8px !important;
+}
+
+.slick-arrow.slick-next {
+  background-color: #27272a !important;
+  position: absolute !important;
+  border-radius: 50% !important;
+  right: -3rem;
+}
+.slick-arrow.slick-next .text-black {
+  color: white;
+}
+.slick-arrow.slick-prev {
+  background-color: #27272a !important;
+  position: absolute !important;
+  border-radius: 50% !important;
+  left: -3rem;
+}
+.slick-arrow.slick-prev .text-black {
+  color: white;
 }
 .img2 {
-    box-shadow: 0 0 18px 8px red inset;
+  box-shadow: 0 0 18px 8px red inset;
 }
 
 /* img {
@@ -146,9 +170,9 @@ body .slick-next::before {
 } */
 
 p img {
-    padding: 2px;
-    border: 2px solid #7eb4e2;
-    /* background: linear-gradient(white, white) padding-box,
+  padding: 2px;
+  border: 2px solid #7eb4e2;
+  /* background: linear-gradient(white, white) padding-box,
         repeating-linear-gradient(
                 -45deg,
                 #f69ec4 0,
@@ -164,5 +188,5 @@ p img {
 }
 
 .slick-slide {
-    outline: none;
+  outline: none;
 }

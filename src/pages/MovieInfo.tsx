@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import SideNav from '../components/SideNav';
 import { getSingleMovie } from '../api/movie';
 import { Link, useParams } from 'react-router-dom';
-import { useToast } from '../hooks';
+import { useRate, useToast } from '../hooks';
 import {
   AiFillHeart,
   AiFillStar,
@@ -18,21 +18,28 @@ import AddReview from './AddReview';
 import { RiHeartAddLine, RiHeartFill } from 'react-icons/ri';
 import { BiRightArrowAlt } from 'react-icons/bi';
 import ShowReview from './ShowReview';
+import { searchActorById } from '../api/actor';
 
-export default function MovieInfo({  showModal, setShowModal }) {
+const posterUrl = import.meta.env.VITE_POSTER_BASE_URL;
+const avatarUrl = import.meta.env.VITE_AVATAR_BASE_URL;
+
+export default function MovieInfo({ showModal = true, setShowModal }) {
   const [showDescModal, setShowDescModal] = useState(false);
-  const [showRateModal, setShowRateModal] = useState(false);
+  // const [showRateModal, setShowRateModal] = useState(false);
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [isHeartClicked, setIsHeartClicked] = useState(false);
   const { notify } = useToast();
   const { movieId } = useParams();
+  const { showRateModal, setShowRateModal } = useRate();
 
   useEffect(() => {
     if (showModal) document.body.style.overflow = 'hidden';
   }, [showModal]);
+
   useEffect(() => {
     if (!showModal) document.body.style.overflow = 'unset';
   }, [showModal]);
+
   const { isPending, isError, error, data } = useQuery({
     queryKey: ['singleMovie', movieId],
     queryFn: () => getSingleMovie(movieId),
@@ -62,11 +69,11 @@ export default function MovieInfo({  showModal, setShowModal }) {
     type,
     tags,
     reviews = {},
-    actors = {},
+    actors = [],
     genres = [],
   } = data.movie;
 
-  const videoName = video;
+  // const videoName = video;
 
   const handleCloseModal = () => {
     setShowDescModal(false);
@@ -89,46 +96,76 @@ export default function MovieInfo({  showModal, setShowModal }) {
     // <div className='flex bg-red-500 fixed top-36 z-50  w-3/4 m-auto '>
     <div
       onClick={handleClick}
-      className='bg-[rgba(0, 0, 0, 0.4)] fixed top-0 left-0 w-screen h-screen z-50 backdrop-blur-md '
+      className='bg-black fixed top-0 left-0 w-screen h-screen z-50 backdrop-blur-md '
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className='overflow-y-auto shadow-2xl bg-white flex h-96 overflow-x-hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mx-auto z-50     '
+        className=' bg-gray-950 border rounded-lg flex h-3/4 w-3/4 overflow-x-hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mx-auto z-50     '
       >
-        <div className='space-y-8 justify-center top-1/2   md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-center'>
-          <div className='flex ml-4 items-center justify-center w-full  h-64 bg-gray-300 rounded sm:w-52 dark:bg-gray-700'>
-            Poster
+        <div className=' justify-center p-3 sm:p-4 top-1/2   sm:space-y-0 sm:space-x-4 rtl:space-x-reverse sm:flex    sm:items-center'>
+          <div className='sm:w-1/3'>
+            <h2 className='mb-2 sm:absolute sm:text-3xl sm:top-16 sm:left-1/2 sm:-translate-x-1/2 font-semibold text-slate-100 text-center '>
+              {title}
+            </h2>
+            <div className='flex items-center justify-center w-full mb-2 h-60  rounded  '>
+              <img
+                src={`${posterUrl}${poster}`}
+                alt={title}
+                className='rounded-md w-36 border'
+              />
+            </div>
           </div>
-          <div className='w-1/2 h-64'>
-            <h2 className='mb-4 font-semibold'>{title}</h2>
+          <div className='sm:w-2/3'>
             <button
               type='button'
               onClick={() => setShowDescModal(true)}
-              className='text-left mb-4'
+              className='text-justify px-1 mb-4 text-slate-100'
             >
-              {trimText(description, 150)}
+              {trimText(description, 100)}
             </button>
             {showDescModal && (
               <MovieDescModal desc={description} onClose={handleCloseModal} />
             )}
 
+            <div className='flex gap-4 flex-wrap mb-3 mx-2'>
+              {actors.map((e: any) => {
+                return (
+                  <figure
+                    key={e.name}
+                    className='text-white text-[8px] text-center w-10'
+                  >
+                    <img
+                      src={`${avatarUrl}${e.avatar.name}`}
+                      alt={e.name}
+                      className='rounded-full border-2'
+                    />
+                    <figcaption>{e.name}</figcaption>
+                  </figure>
+                );
+              })}
+            </div>
+
             {/* <div className='mb-4'>Actors</div> */}
             <div className='flex justify-between items-center mb-4'>
-              <div className='flex items-center text-red-700 '>
+              <div className='flex items-center text-red-700 text-xl '>
                 <AiFillStar />
                 <AiFillStar />
                 <AiFillStar />
                 <AiFillStar />
                 <AiOutlineStar />
               </div>
-              <button onClick={handleClickHeart} className='text-red-700'>
+              <button
+                onClick={handleClickHeart}
+                className='text-red-700 text-xl'
+              >
                 {isHeartClicked ? <RiHeartFill /> : <RiHeartAddLine />}
               </button>
             </div>
 
             <Link
               to={`/movie/${id}`}
-              className='flex items-center justify-center bg-red-300 rounded p-2 space-x-1'
+              state={{ videoName: video, title }}
+              className='flex items-center justify-center bg-red-700 text-white rounded p-2 space-x-1'
             >
               {' '}
               <div className=' '>
@@ -139,17 +176,15 @@ export default function MovieInfo({  showModal, setShowModal }) {
             <div className='flex justify-between items-center mt-4'>
               <button
                 onClick={() => setShowRateModal(true)}
-                className='flex text-sm items-center font-medium text-blue-600 dark:text-blue-500 hover:underline'
+                className='flex text-sm text-white underline items-center font-medium  '
               >
-                <span className=''>Rate movie</span>
-                <BiRightArrowAlt />
+                <span className=''>Rate movie &rarr;</span>
               </button>
               <button
                 onClick={() => setShowReviewModal(true)}
-                className='flex text-sm items-center font-medium text-blue-600 dark:text-blue-500 hover:underline'
+                className='flex text-sm text-white underline items-center font-medium  '
               >
-                <span className=''>Show reviews</span>
-                <BiRightArrowAlt />
+                <span className=''>Show reviews &rarr;</span>
               </button>
 
               {showRateModal && (

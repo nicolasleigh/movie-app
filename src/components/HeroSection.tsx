@@ -3,7 +3,7 @@ import { AiFillStar, AiOutlineRight } from 'react-icons/ai';
 export default function HeroSection() {
   return (
     <div className='mx-auto max-w-screen-xl'>
-      <div className='absolute inset-0 bg-blue-500 '></div>
+      <div className='absolute inset-0 '></div>
       <figure className='relative'>
         <img
           src='/stranger-things.jpg'
